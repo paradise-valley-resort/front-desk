@@ -1,4 +1,11 @@
 en:
+  activerecord:
+    attributes:
+      user:
+        first_name: "First Name"
+        last_name: "Last Name"
+        password_confirmation: "Password Confirmation"
+        admin: "Grant admin access?"
   date:
     formats:
       default:

@@ -1,0 +1,17 @@
+<%= simple_form_for([:admin, @user]) do |f| %>
+  <%= error_notification(f, resource_display_name: "user account") %>
+
+  <%= f.input :first_name, required: true, autofocus: true %>
+  <%= f.input :last_name, required: true %>
+  <%= f.input :email, required: true %>
+  <%= f.input :password,
+    required: true,
+    hint: "Use at least #{@user.class.password_length.min} characters" if @user.class.password_length.min
+  %>
+  <%= f.input :password_confirmation, required: true %>
+  <%= f.input :admin, as: :radio_buttons %>
+  <div class="form-actions">
+    <%= f.button :submit, "Create account", class: "btn-success pull-right" %>
+    <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
+  </div>
+<% end %>

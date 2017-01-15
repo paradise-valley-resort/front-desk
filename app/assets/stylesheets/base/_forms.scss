@@ -1,0 +1,18 @@
+.form-container {
+  width: 450px;
+
+  &.centered {
+    margin: 0 auto;
+  }
+}
+
+.form-actions {
+  border-top: 1px solid $gray-lighter;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-top: 19px;
+
+  .btn {
+    margin-left: 5px;
+  }
+}
