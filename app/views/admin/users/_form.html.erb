@@ -6,12 +6,13 @@
   <%= f.input :email, required: true %>
   <%= f.input :password,
     required: true,
-    hint: "Use at least #{@user.class.password_length.min} characters" if @user.class.password_length.min
+    autocomplete: "off",
+    hint: user_password_hint(@user)
   %>
-  <%= f.input :password_confirmation, required: true %>
+  <%= f.input :password_confirmation, autocomplete: "off", required: true %>
   <%= f.input :admin, as: :radio_buttons %>
   <div class="form-actions">
-    <%= f.button :submit, "Create account", class: "btn-success pull-right" %>
+    <%= f.button :submit, class: "btn-success pull-right" %>
     <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
   </div>
 <% end %>

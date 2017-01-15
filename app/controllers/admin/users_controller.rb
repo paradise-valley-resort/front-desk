@@ -18,10 +18,35 @@ class Admin::UsersController < Admin::ApplicationController
     end
   end
 
+  def edit
+    @user = find_user
+    authorize @user
+  end
+
+  def update
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    @user = find_user
+    authorize @user
+    if @user.update_attributes(user_params)
+      redirect_to admin_users_path,
+        flash: { success: "User was successfully updated." }
+    else
+      render :edit
+    end
+  end
+
   private
 
   def build_user(user_params = {})
     User.new(user_params)
+  end
+
+  def find_user
+    User.find(params[:id])
   end
 
   def user_params

@@ -13,6 +13,12 @@ en:
       with_weekday:
         "%a %m/%d/%y"
 
+  helpers:
+    submit:
+      user:
+        create: "Create account"
+        update: "Update account"
+
   time:
     formats:
       default:

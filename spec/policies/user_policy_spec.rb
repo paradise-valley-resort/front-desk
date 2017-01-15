@@ -3,7 +3,7 @@ require "rails_helper"
 describe UserPolicy do
   subject { described_class }
 
-  permissions :new?, :create? do
+  permissions :new?, :create?, :edit?, :update? do
     it "denies access when not an admin" do
       expect(subject).not_to permit(build(:user), User)
     end
