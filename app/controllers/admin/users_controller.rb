@@ -1,5 +1,7 @@
 class Admin::UsersController < Admin::ApplicationController
   def index
+    @users = User.ordered.page(params[:page])
+    authorize @users
   end
 
   def new

@@ -1,0 +1,30 @@
+.table-list {
+  border-bottom: 1px solid $border-gray;
+  list-style: none;
+  padding-left: 0;
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.table-list-header {
+  padding: 8px 10px;
+  margin-top: 20px;
+  background-color: $bg-gray;
+  border: 1px solid $border-gray;
+  border-radius: 3px 3px 0 0;
+}
+
+.table-list-item {
+  border-left: 1px solid $border-gray;
+  border-right: 1px solid $border-gray;
+  list-style: none;
+}
+
+.table-list-cell {
+  border-top: 1px solid $border-gray-light;
+  padding: 16px 10px;
+  vertical-align: middle;
+}

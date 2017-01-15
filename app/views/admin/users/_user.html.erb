@@ -1,0 +1,33 @@
+<li class="table-list-item user-list-item">
+  <div class="row">
+    <div class="col-xs-4 table-list-cell">
+      <span><%= user.full_name %></span>
+    </div>
+    <div class="col-xs-4 table-list-cell">
+      <span><%= mail_to user.email %></span>
+    </div>
+    <div class="col-xs-2 table-list-cell">
+      <% if user.admin? %>
+        <span class="label label-default">Admin</span>
+      <% else %>
+        <span>&nbsp;</span>
+      <% end %>
+    </div>
+    <div class="col-xs-1 table-list-cell">
+      <span>&nbsp;</span>
+    </div>
+    <div class="col-xs-1 table-list-cell">
+      <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle"
+          data-toggle="dropdown"
+          type="button">
+          <%= fa_icon "cog" %>
+          <%= fa_icon "caret-down" %>
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Edit", edit_admin_user_path(user) %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</li>
