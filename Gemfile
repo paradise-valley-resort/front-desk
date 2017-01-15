@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.3.1"
 
 gem "autoprefixer-rails"
+gem "bootstrap-sass", "~> 3.3.6"
 gem "delayed_job_active_record"
 gem "flutie"
 gem "high_voltage"
