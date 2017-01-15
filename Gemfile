@@ -5,6 +5,7 @@ ruby "2.3.1"
 gem "autoprefixer-rails"
 gem "delayed_job_active_record"
 gem "flutie"
+gem "high_voltage"
 gem "honeybadger"
 gem "jquery-rails"
 gem "normalize-rails", "~> 3.0.0"
@@ -58,8 +59,3 @@ group :staging, :production do
   gem "rack-timeout"
   gem "rails_stdout_logging"
 end
-
-gem 'high_voltage'
-gem 'bourbon', '~> 5.0.0.beta.7'
-gem 'neat', '~> 2.0.0.beta.1'
-gem 'refills', group: [:development, :test]
