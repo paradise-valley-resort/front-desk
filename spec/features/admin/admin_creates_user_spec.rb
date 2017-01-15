@@ -26,6 +26,18 @@ feature "Admin creates user" do
     end
   end
 
+  scenario "with mismatched password and password confirmation" do
+    sign_in create(:user, :admin)
+    visit new_admin_user_path
+    fill_in "Password", with: "password", match: :prefer_exact
+    fill_in "Password Confirmation", with: "different_password", match: :prefer_exact
+    click_on "Create account"
+
+    within ".user_password_confirmation" do
+      expect(page).to have_content("Password Confirmation doesn't match Password")
+    end
+  end
+
   scenario "with invalid attributes and sees error message" do
     sign_in create(:user, :admin)
     visit new_admin_user_path
