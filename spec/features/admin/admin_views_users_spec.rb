@@ -49,4 +49,17 @@ feature "Admin views users" do
 
     expect(current_path).to eq(new_admin_user_path)
   end
+
+  scenario "and chooses to edit a user" do
+    user = create(:user)
+
+    sign_in create(:user, :admin)
+    visit admin_users_path
+    within "#user_#{user.to_param}" do
+      find(".manage-user").click
+      click_on "Edit user"
+    end
+
+    expect(current_path).to eq(edit_admin_user_path(user))
+  end
 end
