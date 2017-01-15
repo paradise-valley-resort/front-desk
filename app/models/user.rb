@@ -5,6 +5,14 @@ class User < ApplicationRecord
   validates :first_name, length: { maximum: 255 }, presence: true
   validates :last_name, length: { maximum: 255 }, presence: true
 
+  def self.active
+    where(deactivated_at: nil)
+  end
+
+  def self.deactive
+    where.not(deactivated_at: nil)
+  end
+
   def self.ordered
     order(:last_name, :first_name)
   end

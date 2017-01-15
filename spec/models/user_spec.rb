@@ -9,6 +9,30 @@ describe User do
     it { should validate_presence_of(:last_name) }
   end
 
+  describe ".active" do
+    it "returns users that have not been deactivated" do
+      active_user = create(:user, :active)
+      deactivated_user = create(:user, :deactivated)
+
+      results = User.active
+
+      expect(results).to include(active_user)
+      expect(results).not_to include(deactivated_user)
+    end
+  end
+
+  describe ".deactive" do
+    it "returns users that have been deactivated" do
+      deactivated_user = create(:user, :deactivated)
+      active_user = create(:user, :active)
+
+      results = User.deactive
+
+      expect(results).to include(deactivated_user)
+      expect(results).not_to include(active_user)
+    end
+  end
+
   describe ".ordered" do
     it "orders users by last name and then by first name" do
       second_user = create(:user, first_name: "John", last_name: "Doe")

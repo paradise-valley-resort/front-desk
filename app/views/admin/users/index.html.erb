@@ -1,7 +1,10 @@
 <h2>Users</h2>
 <div class="subnav">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-6">
+      <%= users_status_filter_button_group %>
+    </div>
+    <div class="col-xs-offset-4 col-xs-2">
       <div class="pull-right">
         <%= link_to new_admin_user_path, class: "btn btn-success" do %>
           <%= fa_icon "plus-circle" %>
@@ -31,7 +34,7 @@
   </div>
 </div>
 <ul class="users table-list">
-  <%= render partial: "user", collection: @users %>
+  <%= render partial: "admin/users/user", collection: @users %>
 </ul>
 <div class="paginate-container">
   <%= paginate @users %>

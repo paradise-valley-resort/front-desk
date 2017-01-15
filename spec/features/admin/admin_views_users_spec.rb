@@ -62,4 +62,40 @@ feature "Admin views users" do
 
     expect(current_path).to eq(edit_admin_user_path(user))
   end
+
+  scenario "and chooses to filter the list of users by all statuses" do
+    active_user = create(:user, :active)
+    deactivated_user = create(:user, :deactivated)
+
+    sign_in create(:user, :admin)
+    visit admin_users_path
+    click_on "All"
+
+    expect(page).to have_content(active_user.email)
+    expect(page).to have_content(deactivated_user.email)
+  end
+
+  scenario "and chooses to filter the list of users by active status" do
+    active_user = create(:user, :active)
+    deactivated_user = create(:user, :deactivated)
+
+    sign_in create(:user, :admin)
+    visit admin_users_path
+    click_on "Active"
+
+    expect(page).to have_content(active_user.email)
+    expect(page).not_to have_content(deactivated_user.email)
+  end
+
+  scenario "and chooses to filter the list of users by deactive status" do
+    deactivated_user = create(:user, :deactivated)
+    active_user = create(:user, :active)
+
+    sign_in create(:user, :admin)
+    visit admin_users_path
+    click_on "Deactive"
+
+    expect(page).to have_content(deactivated_user.email)
+    expect(page).not_to have_content(active_user.email)
+  end
 end
