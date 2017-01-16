@@ -26,6 +26,15 @@
         </button>
         <ul class="dropdown-menu">
           <li><%= link_to "Edit user", edit_admin_user_path(user) %></li>
+          <% if user.active? %>
+            <li>
+              <%= button_to "Deactivate user",
+                admin_user_deactivations_path(user),
+                class: "btn-link btn-danger",
+                data: { confirm: "Are you sure you want to deactivate this user?" }
+              %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

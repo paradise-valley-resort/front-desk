@@ -1,0 +1,32 @@
+.dropdown-menu {
+  > li {
+    > .button_to {
+      > .btn-link {
+        clear: both;
+        color: $btn-default-color;
+        display: block;
+        font-weight: normal;
+        line-height: 1.42857143;
+        padding: 3px 20px;
+        text-align: left;
+        white-space: nowrap;
+        width: 100%;
+
+        &:focus,
+        &:hover {
+          background-color: $dropdown-link-hover-bg;
+          color: $dropdown-link-hover-color;
+          text-decoration: none;
+        }
+
+        &.btn-danger {
+          &:focus,
+          &:hover {
+            background-color: $bg-red;
+            color: $btn-danger-color;
+          }
+        }
+      }
+    }
+  }
+}
