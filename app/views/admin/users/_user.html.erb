@@ -6,15 +6,19 @@
     <div class="col-xs-4 table-list-cell">
       <span><%= mail_to user.email %></span>
     </div>
-    <div class="col-xs-2 table-list-cell">
+    <div class="col-xs-1 table-list-cell">
       <% if user.admin? %>
         <span class="label label-default">Admin</span>
       <% else %>
         <span>&nbsp;</span>
       <% end %>
     </div>
-    <div class="col-xs-1 table-list-cell">
-      <span>&nbsp;</span>
+    <div class="col-xs-2 table-list-cell">
+      <% if user.deactive? %>
+        <span class="text-muted">Deactivated</span>
+      <% else %>
+        <span>&nbsp;</span>
+      <% end %>
     </div>
     <div class="col-xs-1 table-list-cell actions">
       <div class="btn-group">

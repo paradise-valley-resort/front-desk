@@ -59,6 +59,20 @@ describe User do
     end
   end
 
+  describe "#deactive?" do
+    it "returns true if user has been deactivated" do
+      deactivated_user = build(:user, :deactivated)
+
+      expect(deactivated_user.deactive?).to be_truthy
+    end
+
+    it "returns false if user has not been deactivated" do
+      active_user = build(:user, :active)
+
+      expect(active_user.deactive?).to be_falsey
+    end
+  end
+
   describe "#full_name" do
     it "returns the first and last names joined by a space" do
       user = build(:user, first_name: "John", last_name: "Doe")
