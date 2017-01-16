@@ -31,13 +31,15 @@
         <ul class="dropdown-menu">
           <li><%= link_to "Edit user", edit_admin_user_path(user) %></li>
           <% if user.admin? %>
-            <li>
-              <%= button_to "Remove admin access",
-                admin_user_demotions_path(user),
-                class: "btn-link btn-danger",
-                data: { confirm: "Are you sure you want to remove this user's admin access?" }
-              %>
-            </li>
+            <% if policy(user).demote? %>
+              <li>
+                <%= button_to "Remove admin access",
+                  admin_user_demotions_path(user),
+                  class: "btn-link btn-danger",
+                  data: { confirm: "Are you sure you want to remove this user's admin access?" }
+                %>
+              </li>
+            <% end %>
           <% else %>
             <li>
               <%= button_to "Grant admin access",

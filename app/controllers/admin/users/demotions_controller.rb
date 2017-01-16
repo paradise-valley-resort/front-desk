@@ -1,7 +1,7 @@
 class Admin::Users::DemotionsController < Admin::ApplicationController
   def create
     @user = find_user
-    authorize @user
+    authorize @user, :demote?
     @user.update_attributes(admin: false)
     redirect_back(
       fallback_location: admin_users_path,
