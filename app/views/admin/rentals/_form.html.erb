@@ -1,0 +1,10 @@
+<%= simple_form_for([:admin, @rental]) do |f| %>
+  <%= error_notification(f) %>
+
+  <%= f.input :name, required: true, autofocus: true %>
+  <%= f.input :description %>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn-success pull-right" %>
+    <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
+  </div>
+<% end %>
