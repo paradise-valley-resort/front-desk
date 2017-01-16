@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index, :new, :create, :edit, :update] do
       resources :deactivations, only: [:create], controller: "users/deactivations"
+      resources :reactivations, only: [:create], controller: "users/reactivations"
     end
 
     root "dashboard#show"
