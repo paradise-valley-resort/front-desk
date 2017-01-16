@@ -21,11 +21,19 @@ class User < ApplicationRecord
     deactivated_at.blank?
   end
 
+  def active_for_authentication?
+    super && active?
+  end
+
   def deactive?
     deactivated_at.present?
   end
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def inactive_message
+    active? ? super : :deactivated
   end
 end
