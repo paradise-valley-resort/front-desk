@@ -13,10 +13,28 @@ class Admin::RentalsController < Admin::ApplicationController
     end
   end
 
+  def edit
+    @rental = find_rental
+  end
+
+  def update
+    @rental = find_rental
+    if @rental.update_attributes(rental_params)
+      redirect_to admin_rentals_path,
+        flash: { success: "Rental was successfully updated." }
+    else
+      render :edit
+    end
+  end
+
   private
 
   def build_rental(rental_params = {})
     Rental.new(rental_params)
+  end
+
+  def find_rental
+    Rental.find(params[:id])
   end
 
   def rental_params

@@ -17,6 +17,7 @@ en:
     submit:
       rental:
         create: "Create rental"
+        update: "Update rental"
       user:
         create: "Create account"
         update: "Update account"
