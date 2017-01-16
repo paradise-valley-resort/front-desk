@@ -60,6 +60,15 @@ feature "Admin updates user" do
     end
   end
 
+  scenario "is unable to change his own admin access" do
+    admin = create(:user, :admin)
+
+    sign_in admin
+    visit edit_admin_user_path(admin)
+
+    expect(page).not_to have_content("Grant admin access?")
+  end
+
   scenario "with valid attributes and sees success message" do
     user = create(:user)
 

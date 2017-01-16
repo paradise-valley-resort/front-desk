@@ -10,7 +10,9 @@
     hint: user_password_hint(@user)
   %>
   <%= f.input :password_confirmation, autocomplete: "off", required: true %>
-  <%= f.input :admin, as: :radio_buttons %>
+  <% if policy(@user).demote? %>
+    <%= f.input :admin, as: :radio_buttons %>
+  <% end %>
   <div class="form-actions">
     <%= f.button :submit, class: "btn-success pull-right" %>
     <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
