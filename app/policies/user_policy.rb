@@ -19,6 +19,10 @@ class UserPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def deactivate?
+    user.admin? && user != record
+  end
+
   def demote?
     user.admin? && user != record
   end

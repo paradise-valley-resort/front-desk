@@ -1,6 +1,16 @@
 require "rails_helper"
 
 feature "Admin deactivates user" do
+  scenario "is unable to deactivate himself" do
+    admin = create(:user, :admin)
+
+    sign_in admin
+    visit admin_users_path
+    within "#user_#{admin.to_param}" do
+      expect(page).not_to have_button("Deactivate user")
+    end
+  end
+
   scenario "and is presented with confirmation dialog", js: true do
     user = create(:user, :active)
 

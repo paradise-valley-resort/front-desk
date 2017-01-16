@@ -49,13 +49,15 @@
             </li>
           <% end %>
           <% if user.active? %>
-            <li>
-              <%= button_to "Deactivate user",
-                admin_user_deactivations_path(user),
-                class: "btn-link btn-danger",
-                data: { confirm: "Are you sure you want to deactivate this user?" }
-              %>
-            </li>
+            <% if policy(user).deactivate? %>
+              <li>
+                <%= button_to "Deactivate user",
+                  admin_user_deactivations_path(user),
+                  class: "btn-link btn-danger",
+                  data: { confirm: "Are you sure you want to deactivate this user?" }
+                %>
+              </li>
+            <% end %>
           <% else %>
             <li>
               <%= button_to "Reactivate user",
