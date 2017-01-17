@@ -4,4 +4,8 @@ class Rental < ApplicationRecord
   def self.ordered
     order(:name)
   end
+
+  def active?
+    deactivated_at.blank?
+  end
 end

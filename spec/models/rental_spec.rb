@@ -18,4 +18,18 @@ describe Rental do
       expect(results).to eq([first_rental, second_rental, third_rental])
     end
   end
+
+  describe "#active?" do
+    it "returns true if rental has not been deactivated" do
+      active_rental = build(:rental, :active)
+
+      expect(active_rental.active?).to be_truthy
+    end
+
+    it "returns false if rental has been deactivated" do
+      deactivated_rental = build(:rental, :deactivated)
+
+      expect(deactivated_rental.active?).to be_falsey
+    end
+  end
 end

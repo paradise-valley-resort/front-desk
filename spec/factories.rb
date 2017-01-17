@@ -3,6 +3,14 @@ FactoryGirl.define do
 
   factory :rental do
     name "Test rental"
+
+    trait :active do
+      deactivated_at nil
+    end
+
+    trait :deactivated do
+      deactivated_at Time.zone.now
+    end
   end
 
   factory :user do
