@@ -2,7 +2,7 @@
   <%= error_notification(f) %>
 
   <%= f.input :name, required: true, autofocus: true %>
-  <%= f.input :description %>
+  <%= f.input :description, input_html: { rows: 5 } %>
   <div class="form-actions">
     <%= f.button :submit, class: "btn-success pull-right" %>
     <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
