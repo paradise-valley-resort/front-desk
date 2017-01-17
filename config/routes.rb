@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :rentals, only: [:index, :new, :create, :edit, :update] do
       resources :deactivations, only: [:create], controller: "rentals/deactivations"
+      resources :reactivations, only: [:create], controller: "rentals/reactivations"
     end
 
     resources :users, only: [:index, :new, :create, :edit, :update] do

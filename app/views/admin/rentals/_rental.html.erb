@@ -27,6 +27,13 @@
                 data: { confirm: "Are you sure you want to deactivate this rental?" }
               %>
             </li>
+          <% else %>
+            <li>
+              <%= button_to "Reactivate rental",
+                admin_rental_reactivations_path(rental),
+                class: "btn-link"
+              %>
+            </li>
           <% end %>
         </ul>
       </div>
