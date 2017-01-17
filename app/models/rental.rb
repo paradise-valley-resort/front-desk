@@ -8,4 +8,8 @@ class Rental < ApplicationRecord
   def active?
     deactivated_at.blank?
   end
+
+  def deactive?
+    deactivated_at.present?
+  end
 end

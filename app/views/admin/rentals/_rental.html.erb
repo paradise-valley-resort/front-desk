@@ -6,7 +6,14 @@
     <div class="col-xs-4 table-list-cell">
       <span><%= rental.description %></span>
     </div>
-    <div class="col-xs-3 table-list-cell">
+    <div class="col-xs-2 table-list-cell">
+      <% if rental.deactive? %>
+        <span class="text-muted">Deactivated</span>
+      <% else %>
+        <span>&nbsp;</span>
+      <% end %>
+    </div>
+    <div class="col-xs-1 table-list-cell">
       <span>&nbsp;</span>
     </div>
     <div class="col-xs-1 table-list-cell actions">

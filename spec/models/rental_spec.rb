@@ -32,4 +32,18 @@ describe Rental do
       expect(deactivated_rental.active?).to be_falsey
     end
   end
+
+  describe "#deactive?" do
+    it "returns true if rental has been deactivated" do
+      deactivated_rental = build(:rental, :deactivated)
+
+      expect(deactivated_rental.deactive?).to be_truthy
+    end
+
+    it "returns false if rental has not been deactivated" do
+      active_rental = build(:rental, :active)
+
+      expect(active_rental.deactive?).to be_falsey
+    end
+  end
 end
