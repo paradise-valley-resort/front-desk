@@ -1,4 +1,8 @@
 class Admin::RentalsController < Admin::ApplicationController
+  def index
+    @rentals = Rental.ordered.page(params[:page])
+  end
+
   def new
     @rental = build_rental
   end

@@ -1,0 +1,23 @@
+<h2>Rentals</h2>
+<div class="table-list-header">
+  <div class="row">
+    <div class="col-xs-4">
+      <h5>Name</h5>
+    </div>
+    <div class="col-xs-4">
+      <h5>Description</h5>
+    </div>
+    <div class="col-xs-4">
+      <h5>&nbsp;</h5>
+    </div>
+  </div>
+</div>
+<ul class="rentals table-list">
+  <%= render partial: "admin/rentals/rental", collection: @rentals %>
+</ul>
+<div class="paginate-container">
+  <%= paginate @rentals %>
+  <div class="paginate-info">
+    <%= page_entries_info @rentals %>
+  </div>
+</div>
