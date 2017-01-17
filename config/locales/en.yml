@@ -1,6 +1,11 @@
 en:
   activerecord:
     attributes:
+      member:
+        first_name: "First Name"
+        last_name: "Last Name"
+        zip_code: "Zip Code"
+        membership_id: "Membership ID"
       user:
         first_name: "First Name"
         last_name: "Last Name"
@@ -15,6 +20,8 @@ en:
 
   helpers:
     submit:
+      member:
+        create: "Create member"
       rental:
         create: "Create rental"
         update: "Update rental"

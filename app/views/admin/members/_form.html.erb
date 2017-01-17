@@ -1,0 +1,51 @@
+<%= simple_form_for([:admin, @member]) do |f| %>
+  <%= error_notification(f) %>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :first_name, required: true, autofocus: true %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :last_name, required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :membership_id, required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :address_1, required: true %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :address_2 %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :city, required: true %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :state, collection: united_states, required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :zip_code, required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :phone %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :email %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn-success pull-right" %>
+    <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
+  </div>
+<% end %>

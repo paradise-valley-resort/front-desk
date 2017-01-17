@@ -1,8 +1,14 @@
 .form-container {
-  width: 450px;
-
   &.centered {
     margin: 0 auto;
+  }
+
+  &.narrow {
+    width: 450px;
+  }
+
+  &.wide {
+    width: 600px;
   }
 }
 
