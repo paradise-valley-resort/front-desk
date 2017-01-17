@@ -38,4 +38,17 @@ feature "User views rentals" do
 
     expect(current_path).to eq(new_admin_rental_path)
   end
+
+  scenario "and chooses to edit a rental" do
+    rental = create(:rental)
+
+    sign_in create(:user)
+    visit admin_rentals_path
+    within "#rental_#{rental.to_param}" do
+      find(".manage-rental").click
+      click_on "Edit rental"
+    end
+
+    expect(current_path).to eq(edit_admin_rental_path(rental))
+  end
 end
