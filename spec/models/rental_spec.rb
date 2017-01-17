@@ -7,6 +7,30 @@ describe Rental do
     it { should validate_presence_of(:name) }
   end
 
+  describe ".active" do
+    it "returns rentals that have not been deactivated" do
+      active_rental = create(:rental, :active)
+      deactivated_rental = create(:rental, :deactivated)
+
+      results = Rental.active
+
+      expect(results).to include(active_rental)
+      expect(results).not_to include(deactivated_rental)
+    end
+  end
+
+  describe ".deactive" do
+    it "returns rentals that have been deactivated" do
+      deactivated_rental = create(:rental, :deactivated)
+      active_rental = create(:rental, :active)
+
+      results = Rental.deactive
+
+      expect(results).to include(deactivated_rental)
+      expect(results).not_to include(active_rental)
+    end
+  end
+
   describe ".ordered" do
     it "orders rentals by name" do
       second_rental = create(:rental, name: "Bravo")

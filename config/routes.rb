@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, path: :admin
 
   namespace :admin do
+    namespace :rentals do
+      get "/active", to: "actives#index", as: "actives"
+      get "/deactive", to: "deactives#index", as: "deactives"
+    end
+
     namespace :users do
       get "/active", to: "actives#index", as: "actives"
       get "/deactive", to: "deactives#index", as: "deactives"

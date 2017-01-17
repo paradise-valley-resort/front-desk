@@ -51,4 +51,40 @@ feature "User views rentals" do
 
     expect(current_path).to eq(edit_admin_rental_path(rental))
   end
+
+  scenario "and chooses to filter the list of rentals by all statuses" do
+    active_rental = create(:rental, :active, name: "Active Rental")
+    deactivated_rental = create(:rental, :deactivated, name: "Deactivated Rental")
+
+    sign_in create(:user)
+    visit admin_rentals_path
+    click_on "All"
+
+    expect(page).to have_content(active_rental.name)
+    expect(page).to have_content(deactivated_rental.name)
+  end
+
+  scenario "and chooses to filter the list of rentals by active status" do
+    active_rental = create(:rental, :active, name: "Active Rental")
+    deactivated_rental = create(:rental, :deactivated, name: "Deactivated Rental")
+
+    sign_in create(:user)
+    visit admin_rentals_path
+    click_on "Active"
+
+    expect(page).to have_content(active_rental.name)
+    expect(page).not_to have_content(deactivated_rental.name)
+  end
+
+  scenario "and chooses to filter the list of rentals by deactive status" do
+    deactivated_rental = create(:rental, :deactivated, name: "Deactivated Rental")
+    active_rental = create(:rental, :active, name: "Active Rental")
+
+    sign_in create(:user)
+    visit admin_rentals_path
+    click_on "Deactive"
+
+    expect(page).to have_content(deactivated_rental.name)
+    expect(page).not_to have_content(active_rental.name)
+  end
 end

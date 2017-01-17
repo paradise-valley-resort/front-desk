@@ -1,6 +1,14 @@
 class Rental < ApplicationRecord
   validates :name, length: { maximum: 255 }, presence: true
 
+  def self.active
+    where(deactivated_at: nil)
+  end
+
+  def self.deactive
+    where.not(deactivated_at: nil)
+  end
+
   def self.ordered
     order(:name)
   end
