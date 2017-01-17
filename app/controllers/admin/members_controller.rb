@@ -12,10 +12,29 @@ class Admin::MembersController < Admin::ApplicationController
       render :new
     end
   end
+
+  def edit
+    @member = find_member
+  end
+
+  def update
+    @member = find_member
+    if @member.update_attributes(member_params)
+      redirect_to admin_members_path,
+        flash: { success: "Member was successfully updated." }
+    else
+      render :edit
+    end
+  end
+
   private
 
   def build_member(member_params = {})
     Member.new(member_params)
+  end
+
+  def find_member
+    Member.find(params[:id])
   end
 
   def member_params

@@ -22,6 +22,7 @@ en:
     submit:
       member:
         create: "Create member"
+        update: "Update member"
       rental:
         create: "Create rental"
         update: "Update rental"
