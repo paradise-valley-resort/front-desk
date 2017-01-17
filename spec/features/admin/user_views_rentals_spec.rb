@@ -30,4 +30,12 @@ feature "User views rentals" do
 
     expect(page).to have_content(rental.name)
   end
+
+  scenario "and chooses to create a new rental" do
+    sign_in create(:user)
+    visit admin_rentals_path
+    click_on "Add rental"
+
+    expect(current_path).to eq(new_admin_rental_path)
+  end
 end
