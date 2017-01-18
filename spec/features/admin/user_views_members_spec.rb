@@ -38,4 +38,17 @@ feature "User views members" do
 
     expect(current_path).to eq(new_admin_member_path)
   end
+
+  scenario "and chooses to edit a member" do
+    member = create(:member)
+
+    sign_in create(:user)
+    visit admin_members_path
+    within "#member_#{member.to_param}" do
+      find(".manage-member").click
+      click_on "Edit member"
+    end
+
+    expect(current_path).to eq(edit_admin_member_path(member))
+  end
 end

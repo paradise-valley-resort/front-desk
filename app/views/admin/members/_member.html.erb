@@ -14,11 +14,21 @@
         title: "Contact Information"
       %>
     </div>
-    <div class="col-xs-3 table-list-cell">
+    <div class="col-xs-7 table-list-cell">
       <span><%= member.membership_id %></span>
     </div>
-    <div class="col-xs-5 table-list-cell">
-      <span>&nbsp;</span>
+    <div class="col-xs-1 table-list-cell actions">
+      <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle manage-member"
+          data-toggle="dropdown"
+          type="button">
+          <%= fa_icon "cog" %>
+          <%= fa_icon "caret-down" %>
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Edit member", edit_admin_member_path(member) %></li>
+        </ul>
+      </div>
     </div>
   </div>
 </li>
