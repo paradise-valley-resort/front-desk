@@ -14,8 +14,18 @@
         title: "Contact Information"
       %>
     </div>
-    <div class="col-xs-7 table-list-cell">
+    <div class="col-xs-3 table-list-cell">
       <span><%= member.membership_id %></span>
+    </div>
+    <div class="col-xs-2 table-list-cell">
+      <% if member.deactive? %>
+        <span class="text-muted">Deactivated</span>
+      <% else %>
+        <span>&nbsp;</span>
+      <% end %>
+    </div>
+    <div class="col-xs-2 table-list-cell">
+      <span>&nbsp;</span>
     </div>
     <div class="col-xs-1 table-list-cell actions">
       <div class="btn-group">

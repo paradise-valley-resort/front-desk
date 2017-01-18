@@ -56,6 +56,20 @@ describe Member do
     end
   end
 
+  describe "#deactive?" do
+    it "returns true if member has been deactivated" do
+      deactivated_member = build(:member, :deactivated)
+
+      expect(deactivated_member.deactive?).to be_truthy
+    end
+
+    it "returns false if member has not been deactivated" do
+      active_member = build(:member, :active)
+
+      expect(active_member.deactive?).to be_falsey
+    end
+  end
+
   describe "#full_name" do
     it "returns the first and last names joined by a space" do
       member = build(:member, first_name: "John", last_name: "Doe")

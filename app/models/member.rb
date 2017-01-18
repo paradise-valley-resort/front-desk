@@ -26,6 +26,10 @@ class Member < ApplicationRecord
     deactivated_at.blank?
   end
 
+  def deactive?
+    deactivated_at.present?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
