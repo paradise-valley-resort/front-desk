@@ -22,6 +22,10 @@ class Member < ApplicationRecord
     order(:last_name, :first_name)
   end
 
+  def active?
+    deactivated_at.blank?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -10,6 +10,14 @@ FactoryGirl.define do
     state "MO"
     zip_code "12345"
     membership_id
+
+    trait :active do
+      deactivated_at nil
+    end
+
+    trait :deactivated do
+      deactivated_at Time.zone.now
+    end
   end
 
   factory :rental do
