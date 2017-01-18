@@ -1,4 +1,8 @@
 class Admin::MembersController < Admin::ApplicationController
+  def index
+    @members = Member.ordered.page(params[:page])
+  end
+
   def new
     @member = build_member
   end

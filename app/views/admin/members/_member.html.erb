@@ -1,0 +1,24 @@
+<li class="table-list-item member-list-item" id="member_<%= member.to_param %>">
+  <div class="row">
+    <div class="col-xs-4 table-list-cell">
+      <%= link_to member.full_name,
+        "#",
+        data: {
+          content: html_escape_once(member_contact_info_popover(member)),
+          html: "true",
+          placement: "right",
+          toggle: "popover",
+          trigger: "focus"
+        },
+        role: "button",
+        title: "Contact Information"
+      %>
+    </div>
+    <div class="col-xs-3 table-list-cell">
+      <span><%= member.membership_id %></span>
+    </div>
+    <div class="col-xs-5 table-list-cell">
+      <span>&nbsp;</span>
+    </div>
+  </div>
+</li>

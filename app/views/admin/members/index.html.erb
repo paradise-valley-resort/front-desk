@@ -1,0 +1,23 @@
+<h2>Members</h2>
+<div class="table-list-header">
+  <div class="row">
+    <div class="col-xs-4">
+      <h5>Name</h5>
+    </div>
+    <div class="col-xs-3">
+      <h5>Membership ID</h5>
+    </div>
+    <div class="col-xs-5">
+      <h5>&nbsp;</h5>
+    </div>
+  </div>
+</div>
+<ul class="members table-list">
+  <%= render partial: "admin/members/member", collection: @members %>
+</ul>
+<div class="paginate-container">
+  <%= paginate @members %>
+  <div class="paginate-info">
+    <%= page_entries_info @members %>
+  </div>
+</div>

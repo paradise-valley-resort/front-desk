@@ -17,4 +17,12 @@ class Member < ApplicationRecord
   validates :phone, length: { maximum: 255 }
   validates :state, length: { maximum: 255 }, presence: true
   validates :zip_code, length: { maximum: 255 }, presence: true
+
+  def self.ordered
+    order(:last_name, :first_name)
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

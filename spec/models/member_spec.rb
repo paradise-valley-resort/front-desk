@@ -29,4 +29,24 @@ describe Member do
 
     it { should_not allow_values("fooexample.com", "foo@@example.com").for(:email) }
   end
+
+  describe ".ordered" do
+    it "orders members by last name and then by first name" do
+      second_member = create(:member, first_name: "John", last_name: "Doe")
+      third_member = create(:member, first_name: "Sally", last_name: "Smith")
+      first_member = create(:member, first_name: "Jane", last_name: "Doe")
+
+      results = Member.ordered
+
+      expect(results).to eq([first_member, second_member, third_member])
+    end
+  end
+
+  describe "#full_name" do
+    it "returns the first and last names joined by a space" do
+      member = build(:member, first_name: "John", last_name: "Doe")
+
+      expect(member.full_name).to eq("John Doe")
+    end
+  end
 end
