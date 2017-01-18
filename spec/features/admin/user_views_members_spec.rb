@@ -30,4 +30,12 @@ feature "User views members" do
 
     expect(page).to have_content(member.full_name)
   end
+
+  scenario "and chooses to create a new member" do
+    sign_in create(:user)
+    visit admin_members_path
+    click_on "Add member"
+
+    expect(current_path).to eq(new_admin_member_path)
+  end
 end
