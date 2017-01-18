@@ -51,4 +51,40 @@ feature "User views members" do
 
     expect(current_path).to eq(edit_admin_member_path(member))
   end
+
+  scenario "and chooses to filter the list of members by all statuses" do
+    active_member = create(:member, :active)
+    deactivated_member = create(:member, :deactivated)
+
+    sign_in create(:user)
+    visit admin_members_path
+    click_on "All"
+
+    expect(page).to have_content(active_member.membership_id)
+    expect(page).to have_content(deactivated_member.membership_id)
+  end
+
+  scenario "and chooses to filter the list of members by active status" do
+    active_member = create(:member, :active)
+    deactivated_member = create(:member, :deactivated)
+
+    sign_in create(:user)
+    visit admin_members_path
+    click_on "Active"
+
+    expect(page).to have_content(active_member.membership_id)
+    expect(page).not_to have_content(deactivated_member.membership_id)
+  end
+
+  scenario "and chooses to filter the list of members by deactive status" do
+    deactivated_member = create(:member, :deactivated)
+    active_member = create(:member, :active)
+
+    sign_in create(:user)
+    visit admin_members_path
+    click_on "Deactive"
+
+    expect(page).to have_content(deactivated_member.membership_id)
+    expect(page).not_to have_content(active_member.membership_id)
+  end
 end

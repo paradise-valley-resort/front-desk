@@ -18,6 +18,14 @@ class Member < ApplicationRecord
   validates :state, length: { maximum: 255 }, presence: true
   validates :zip_code, length: { maximum: 255 }, presence: true
 
+  def self.active
+    where(deactivated_at: nil)
+  end
+
+  def self.deactive
+    where.not(deactivated_at: nil)
+  end
+
   def self.ordered
     order(:last_name, :first_name)
   end

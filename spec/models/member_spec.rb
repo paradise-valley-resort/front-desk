@@ -30,6 +30,30 @@ describe Member do
     it { should_not allow_values("fooexample.com", "foo@@example.com").for(:email) }
   end
 
+  describe ".active" do
+    it "returns members that have not been deactivated" do
+      active_member = create(:member, :active)
+      deactivated_member = create(:member, :deactivated)
+
+      results = Member.active
+
+      expect(results).to include(active_member)
+      expect(results).not_to include(deactivated_member)
+    end
+  end
+
+  describe ".deactive" do
+    it "returns members that have been deactivated" do
+      deactivated_member = create(:member, :deactivated)
+      active_member = create(:member, :active)
+
+      results = Member.deactive
+
+      expect(results).to include(deactivated_member)
+      expect(results).not_to include(active_member)
+    end
+  end
+
   describe ".ordered" do
     it "orders members by last name and then by first name" do
       second_member = create(:member, first_name: "John", last_name: "Doe")
