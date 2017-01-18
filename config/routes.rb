@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     resources :members, only: [:index, :new, :create, :edit, :update] do
       resources :deactivations, only: [:create], controller: "members/deactivations"
+      resources :reactivations, only: [:create], controller: "members/reactivations"
     end
 
     resources :rentals, only: [:index, :new, :create, :edit, :update] do

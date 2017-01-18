@@ -35,6 +35,13 @@
                 data: { confirm: "Are you sure you want to deactivate this member?" }
               %>
             </li>
+          <% else %>
+            <li>
+              <%= button_to "Reactivate member",
+                admin_member_reactivations_path(member),
+                class: "btn-link"
+              %>
+            </li>
           <% end %>
         </ul>
       </div>
