@@ -1,0 +1,13 @@
+<%= simple_form_for(
+  [@booking.rental, @booking],
+  url: rental_booking_requests_path(@booking.rental)
+) do |f| %>
+  <%= error_notification(f, resource_display_name: "booking request") %>
+
+  <%= f.input :starts_at, as: :string, required: true, autofocus: true %>
+  <%= f.input :ends_at, as: :string, required: true %>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn-success pull-right" %>
+    <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>
+  </div>
+<% end %>

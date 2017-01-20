@@ -1,4 +1,6 @@
 class Rental < ApplicationRecord
+  has_many :bookings, dependent: :destroy
+
   validates :name, length: { maximum: 255 }, presence: true
 
   def self.active

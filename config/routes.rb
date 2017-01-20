@@ -36,4 +36,10 @@ Rails.application.routes.draw do
 
     root "dashboard#show"
   end
+
+  resources :booking_requests, only: [:show]
+
+  resources :rentals, only: [] do
+    resources :booking_requests, only: [:new, :create]
+  end
 end

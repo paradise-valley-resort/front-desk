@@ -2,6 +2,12 @@ FactoryGirl.define do
   sequence(:email) { |n| "user-#{n}@example.com" }
   sequence(:membership_id) { |n| "A#{n}"}
 
+  factory :booking do
+    starts_at { 1.day.from_now }
+    ends_at { 3.days.from_now }
+    rental
+  end
+
   factory :member do
     first_name "John"
     last_name "Doe"
