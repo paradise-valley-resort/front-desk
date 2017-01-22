@@ -24,7 +24,7 @@
       <span><%= booking.ends_at.strftime("%-m/%-d/%Y") %></span>
     </div>
     <div class="col-xs-2 table-list-cell">
-      <span>&nbsp;</span>
+      <%= booking_status_label(booking) %>
     </div>
     <div class="col-xs-1 table-list-cell actions">
       <div class="btn-group">
@@ -47,7 +47,7 @@
                 admin_booking_rejections_path(booking),
                 class: "btn-link btn-danger",
                 data: {
-                  confirm: "Are you sure you want to reject this booking?" 
+                  confirm: "Are you sure you want to reject this booking?"
                 }
               %>
             </li>

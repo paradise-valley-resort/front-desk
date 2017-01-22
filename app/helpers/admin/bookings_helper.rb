@@ -15,4 +15,35 @@ module Admin::BookingsHelper
       concat("#{mail_to(booking.guest_email)}")
     end
   end
+
+  def booking_status_label(booking)
+    case booking.status
+    when "pending"
+      booking_pending_status_label(booking)
+    when "approved"
+      booking_approved_status_label(booking)
+    when "rejected"
+      booking_rejected_status_label(booking)
+    end
+  end
+
+  private
+
+  def booking_approved_status_label(booking)
+    content_tag(:span, class: "label label-primary") do
+      booking.status.capitalize
+    end
+  end
+
+  def booking_pending_status_label(booking)
+    content_tag(:span, class: "label label-default") do
+      booking.status.capitalize
+    end
+  end
+
+  def booking_rejected_status_label(booking)
+    content_tag(:span, class: "label label-danger") do
+      booking.status.capitalize
+    end
+  end
 end
