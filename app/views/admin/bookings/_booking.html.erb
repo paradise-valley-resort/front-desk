@@ -51,6 +51,13 @@
                 }
               %>
             </li>
+          <% elsif booking.approved? %>
+            <li>
+              <%= button_to "Mark booking as paid",
+                admin_booking_payments_path(booking),
+                class: "btn-link"
+              %>
+            </li>
           <% end %>
         </ul>
       </div>

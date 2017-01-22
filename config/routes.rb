@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     resources :bookings, only: [:index] do
       resources :approvals, only: [:create], controller: "bookings/approvals"
+      resources :payments, only: [:create], controller: "bookings/payments"
       resources :rejections, only: [:create], controller: "bookings/rejections"
     end
 
