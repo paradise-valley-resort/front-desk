@@ -1,0 +1,10 @@
+Hello,
+
+A new booking request has been received for <%= @booking.rental_name %>.  To review this request, visit <%= admin_root_url %>.
+
+Booking Request Details
+==============================
+Rental: <%= @booking.rental_name %>
+Guest: <%= @booking.guest_name %>
+Check In: <%= @booking.starts_at.strftime("%-m/%-d/%Y") %>
+Check Out: <%= @booking.ends_at.strftime("%-m/%-d/%Y") %>

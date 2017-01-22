@@ -14,6 +14,7 @@ class BookingRequestsController < ApplicationController
 
     if @booking.save
       BookingMailer.request_confirmation(@booking).deliver_now
+      BookingMailer.request_notification(@booking).deliver_now
       redirect_to booking_request_path(@booking),
         flash: { success: "Booking request was successfully created." }
     else

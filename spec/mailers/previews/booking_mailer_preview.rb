@@ -10,4 +10,16 @@ class BookingMailerPreview < ActionMailer::Preview
 
     BookingMailer.request_confirmation(booking)
   end
+
+  def request_notification
+    rental = Rental.new(name: "Cabin 1")
+    booking = rental.bookings.new(
+      starts_at: 1.day.from_now,
+      ends_at: 3.days.from_now,
+      guest_name: "John Doe",
+      request_id: "PVR123456789"
+    )
+
+    BookingMailer.request_notification(booking)
+  end
 end
