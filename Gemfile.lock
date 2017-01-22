@@ -312,6 +312,7 @@ DEPENDENCIES
   kaminari
   launchy
   listen
+  momentjs-rails
   pg
   pry-byebug
   pry-rails
