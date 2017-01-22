@@ -30,4 +30,12 @@ feature "User views bookings" do
 
     expect(page).to have_content(booking.request_id)
   end
+
+  scenario "and chooses to create a new booking" do
+    sign_in create(:user)
+    visit admin_bookings_path
+    click_on "Add booking"
+
+    expect(current_path).to eq(rentals_search_path)
+  end
 end
