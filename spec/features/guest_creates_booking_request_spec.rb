@@ -26,7 +26,7 @@ feature "Guest creates booking request" do
 
   def fill_out_booking_request_form(booking_attributes = {})
     booking = build(:booking, {}.merge(booking_attributes))
-    fill_in "Name", with: booking.guest_name
+    fill_in "Full Name", with: booking.guest_name
     fill_in "Email", with: booking.guest_email
     click_on "Submit booking request"
   end
