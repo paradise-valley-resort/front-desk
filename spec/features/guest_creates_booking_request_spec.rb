@@ -24,6 +24,19 @@ feature "Guest creates booking request" do
     expect(page).to have_content("Booking request was successfully created")
   end
 
+  scenario "and rental becomes no longer available" do
+    rental = create(:rental)
+
+    fill_out_rental_search_form
+    select_rental(rental.to_param)
+    click_on "Request to book"
+    rental.touch(:deactivated_at)
+    fill_out_booking_request_form
+
+    expect(current_path).to eq(rentals_search_path)
+    expect(page).to have_content("Sorry, this rental is no longer available")
+  end
+
   def fill_out_booking_request_form(booking_attributes = {})
     booking = build(:booking, {}.merge(booking_attributes))
     fill_in "Full Name", with: booking.guest_name

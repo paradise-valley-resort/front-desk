@@ -6,6 +6,12 @@ class BookingRequestsController < ApplicationController
 
   def create
     @booking = build_booking(booking_params)
+
+    unless @booking.rental.available_between?(@booking.starts_at, @booking.ends_at)
+      flash[:error] = "Sorry, this rental is no longer available."
+      redirect_to rentals_search_path and return
+    end
+
     if @booking.save
       redirect_to booking_request_path(@booking),
         flash: { success: "Booking request was successfully created." }
@@ -40,7 +46,7 @@ class BookingRequestsController < ApplicationController
   end
 
   def find_rental
-    Rental.find(params[:rental_id])
+    Rental.includes(:bookings).find(params[:rental_id])
   end
 
   def set_booking_ends_at

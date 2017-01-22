@@ -34,6 +34,14 @@ class Rental < ApplicationRecord
     deactivated_at.blank?
   end
 
+  def available_between?(from, to)
+    if self.class.available_between(from, to).include?(self)
+      true
+    else
+      false
+    end
+  end
+
   def deactive?
     deactivated_at.present?
   end
