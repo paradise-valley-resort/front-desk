@@ -3,8 +3,8 @@ FactoryGirl.define do
   sequence(:membership_id) { |n| "A#{n}"}
 
   factory :booking do
-    starts_at { 1.day.from_now }
-    ends_at { 3.days.from_now }
+    starts_at { 1.day.from_now.change(hour: 15) }
+    ends_at { 3.days.from_now.change(hour: 11) }
     rental
   end
 

@@ -1,0 +1,46 @@
+<div class="hero-image-container">
+  <%= image_tag(
+    "pvr-logo.png",
+    alt: "Paradise Valley Resort Logo",
+    class: "hero-image"
+  ) %>
+</div>
+<div class="search-card-container">
+  <div class="search-card">
+    <div class="search-card-inner-container">
+      <h2 class="search-card-header text-center">
+        When would you like to stay?
+      </h2>
+      <%= simple_form_for(@search, url: rentals_search_path, method: :get) do |f| %>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.input :starts_at, required: true, autofocus: true %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :ends_at, required: true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.submit "Check availability", class: "btn btn-success btn-block" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="search-results-container">
+  <% if @search.errors.blank? %>
+    <% if @search.results.present? %>
+      <ul class="search-results">
+        <%= render partial: "rental_searches/result", collection: @search.results %>
+      </ul>
+    <% elsif %>
+      <div class="row">
+        <div class="center-block col-xs-6 search-results-blankslate">
+          <p>Sorry, there are no rentals available during those dates.</p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

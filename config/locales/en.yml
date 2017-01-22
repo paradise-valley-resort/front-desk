@@ -1,4 +1,9 @@
 en:
+  activemodel:
+    attributes:
+      rental_search:
+        starts_at: "Check In"
+        ends_at: "Check Out"
   activerecord:
     attributes:
       booking:

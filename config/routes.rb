@@ -37,6 +37,10 @@ Rails.application.routes.draw do
     root "dashboard#show"
   end
 
+  namespace :rentals do
+    get "/search", to: "searches#show", as: "search"
+  end
+
   resources :booking_requests, only: [:show]
 
   resources :rentals, only: [] do

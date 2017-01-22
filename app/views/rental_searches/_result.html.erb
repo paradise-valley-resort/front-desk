@@ -1,0 +1,17 @@
+<li class="result" id="rental_<%= result.to_param %>">
+  <%# TODO: Update link %>
+  <a class="result-wrapper" href="#">
+    <div class="row">
+      <div class="col-xs-3">
+        <%# TODO: Update image %>
+        <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=250%C3%97150&w=250&h=150" alt="Coming Soon" />
+      </div>
+      <div class="col-xs-9">
+        <h3><%= result.name %></h3>
+        <p>
+          <%= result.description %>
+        </p>
+      </div>
+    </div>
+  </a>
+</li>

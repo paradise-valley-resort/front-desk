@@ -7,6 +7,21 @@ class Rental < ApplicationRecord
     where(deactivated_at: nil)
   end
 
+  def self.available_between(from, to)
+    time_range = from..to
+
+    left_outer_joins(:bookings).
+      active.
+      where.not(bookings: { starts_at: time_range }).
+      where.not(bookings: { ends_at: time_range }).
+      or(
+        left_outer_joins(:bookings).
+          active.
+          where(bookings: { id: nil })
+      ).
+      distinct
+  end
+
   def self.deactive
     where.not(deactivated_at: nil)
   end
