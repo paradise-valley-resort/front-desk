@@ -43,7 +43,7 @@
           }
         %>
       </ul>
-    <% elsif %>
+    <% elsif @search.starts_at.present? && @search.ends_at.present? %>
       <div class="row">
         <div class="center-block col-xs-6 search-results-blankslate">
           <p>Sorry, there are no rentals available during those dates.</p>
