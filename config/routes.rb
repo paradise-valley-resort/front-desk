@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       get "/deactive", to: "deactives#index", as: "deactives"
     end
 
+    resource :calendar, only: [:show]
+
     resources :bookings, only: [:index] do
       resources :approvals, only: [:create], controller: "bookings/approvals"
       resources :cancellations, only: [:create], controller: "bookings/cancellations"

@@ -1,0 +1,36 @@
+<div class="container">
+  <div id="calendar">
+  </div>
+</div>
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $("#calendar").fullCalendar({
+      buttonText: {
+        day: "Day",
+        list: "View List",
+        month: "Month",
+        today: "Today",
+        week: "Week",
+      },
+      defaultView: "month",
+      eventAfterRender: function(event, element, view) {
+        $(element).attr("id", "booking_" + event.id);
+      },
+      displayEventTime: false,
+      events: {
+        url: "/admin/calendar",
+        type: "GET",
+        error: function(response) {
+          console.log(response);
+        },
+        startParam: "start_date",
+        endParam: "end_date",
+      },
+      header: {
+        left: "agendaDay,agendaWeek,month",
+        center: "title",
+        right: "today prev,next"
+      },
+    });
+  </script>
+<% end %>

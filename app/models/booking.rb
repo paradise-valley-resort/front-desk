@@ -1,4 +1,11 @@
 class Booking < ApplicationRecord
+  CALENDAR_HEX_COLORS = {
+    pending: "#777",
+    approved: "#337ab7",
+    rejected: "#d9534f",
+    paid: "#5cb85c",
+    cancelled: "#d9534f"
+  }
   VALID_EMAIL_REGEX = /\A[^@]+@[^@]+\z/.freeze
   enum status: { pending: 0, approved: 1, rejected: 2, paid: 3, cancelled: 4 }
 
@@ -22,11 +29,52 @@ class Booking < ApplicationRecord
 
   delegate :name, to: :rental, prefix: true
 
+  def self.between(start_date, end_date)
+    date_range = start_date..end_date
+    where(starts_at: date_range).
+      where(ends_at: date_range)
+  end
+
+  def self.not_cancelled
+    where.not(status: :cancelled)
+  end
+
+  def self.not_rejected
+    where.not(status: :rejected)
+  end
+
   def self.ordered
     order(created_at: :desc)
   end
 
+  def as_json(options = {})
+    {
+      id: id,
+      title: calendar_title,
+      start: calendar_start_date,
+      end: calendar_end_date,
+      color: calendar_color_code,
+      status: status
+    }
+  end
+
   private
+
+  def calendar_color_code
+    CALENDAR_HEX_COLORS.fetch(status.to_sym)
+  end
+
+  def calendar_end_date
+    (ends_at + 1.day).rfc822
+  end
+
+  def calendar_start_date
+    starts_at.rfc822
+  end
+
+  def calendar_title
+    "#{rental_name} - #{guest_name} (#{status.capitalize})"
+  end
 
   def generate_request_id
     begin
