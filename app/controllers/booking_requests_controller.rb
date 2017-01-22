@@ -15,6 +15,7 @@ class BookingRequestsController < ApplicationController
   end
 
   def show
+    @booking = find_booking
   end
 
   private
@@ -32,6 +33,10 @@ class BookingRequestsController < ApplicationController
   def build_booking(booking_params = {})
     rental = find_rental
     rental.bookings.build(booking_params)
+  end
+
+  def find_booking
+    Booking.find(params[:id])
   end
 
   def find_rental

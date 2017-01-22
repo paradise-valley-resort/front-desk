@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122040248) do
+ActiveRecord::Schema.define(version: 20170122050429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170122040248) do
     t.string   "guest_name",          limit: 255, null: false
     t.string   "guest_email",         limit: 255, null: false
     t.string   "guest_membership_id", limit: 255
+    t.string   "request_id",          limit: 255, null: false
     t.index ["rental_id"], name: "index_bookings_on_rental_id", using: :btree
   end
 

@@ -1,12 +1,14 @@
 FactoryGirl.define do
   sequence(:email) { |n| "user-#{n}@example.com" }
   sequence(:membership_id) { |n| "A#{n}"}
+  sequence(:request_id) { |n| "PVR#{n}"}
 
   factory :booking do
     starts_at { 1.day.from_now.change(hour: 15) }
     ends_at { 3.days.from_now.change(hour: 11) }
     guest_name "John Doe"
     guest_email { generate(:email) }
+    request_id
     rental
   end
 

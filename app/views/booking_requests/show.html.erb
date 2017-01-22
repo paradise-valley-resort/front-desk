@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>
+    Request Confirmation
+    <small>#<%= @booking.request_id %></small>
+  </h2>
+  <p>
+    Thanks!  We'll notify you once your request has been reviewed.
+  </p>
+  <p>
+    In the meantime, if you have any questions, you may contact us at
+    <%= mail_to("pv_resort@yahoo.com") %> or (417) 847-3245.
+  </p>
+  <p>
+    <%= link_to "Return to main page", rentals_search_path %>
+  </p>
+</div>
