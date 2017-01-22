@@ -14,6 +14,14 @@ FactoryGirl.define do
     trait :pending do
       status 0
     end
+
+    trait :approved do
+      status 1
+    end
+
+    trait :rejected do
+      status 2
+    end
   end
 
   factory :member do

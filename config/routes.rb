@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :users, path: :admin
 
   namespace :admin do
+    namespace :bookings do
+      get "/approved", to: "approveds#index", as: "approveds"
+      get "/pending", to: "pendings#index", as: "pendings"
+      get "/rejected", to: "rejecteds#index", as: "rejecteds"
+    end
+
     namespace :members do
       get "/active", to: "actives#index", as: "actives"
       get "/deactive", to: "deactives#index", as: "deactives"

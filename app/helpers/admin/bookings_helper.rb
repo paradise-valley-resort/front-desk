@@ -27,6 +27,15 @@ module Admin::BookingsHelper
     end
   end
 
+  def bookings_status_filter_button_group
+    content_tag :div, class: "btn-group", role: "group" do
+      concat(bookings_status_filter_all_button)
+      concat(bookings_status_filter_pending_button)
+      concat(bookings_status_filter_approved_button)
+      concat(bookings_status_filter_rejected_button)
+    end
+  end
+
   private
 
   def booking_approved_status_label(booking)
@@ -45,5 +54,29 @@ module Admin::BookingsHelper
     content_tag(:span, class: "label label-danger") do
       booking.status.capitalize
     end
+  end
+
+  def bookings_status_filter_all_button
+    klass = "btn btn-default"
+    klass = "#{klass} active" if controller_name == "bookings"
+    link_to "All", admin_bookings_path, class: klass
+  end
+
+  def bookings_status_filter_approved_button
+    klass = "btn btn-default"
+    klass = "#{klass} active" if controller_name == "approveds"
+    link_to "Approved", admin_bookings_approveds_path, class: klass
+  end
+
+  def bookings_status_filter_pending_button
+    klass = "btn btn-default"
+    klass = "#{klass} active" if controller_name == "pendings"
+    link_to "Pending", admin_bookings_pendings_path, class: klass
+  end
+
+  def bookings_status_filter_rejected_button
+    klass = "btn btn-default"
+    klass = "#{klass} active" if controller_name == "rejecteds"
+    link_to "Rejected", admin_bookings_rejecteds_path, class: klass
   end
 end
