@@ -13,6 +13,7 @@ class BookingRequestsController < ApplicationController
     end
 
     if @booking.save
+      BookingMailer.request_confirmation(@booking).deliver_now
       redirect_to booking_request_path(@booking),
         flash: { success: "Booking request was successfully created." }
     else
@@ -46,7 +47,7 @@ class BookingRequestsController < ApplicationController
   end
 
   def find_rental
-    Rental.includes(:bookings).find(params[:rental_id])
+    Rental.find(params[:rental_id])
   end
 
   def set_booking_ends_at
