@@ -12,17 +12,19 @@
         When would you like to stay?
       </h2>
       <%= simple_form_for(@search, url: rentals_search_path, method: :get) do |f| %>
-        <div class="row">
-          <div class="col-xs-6">
-            <%= f.input :starts_at, required: true, autofocus: true %>
+        <div class="form-inputs">
+          <div class="row">
+            <div class="col-xs-6">
+              <%= f.input :starts_at, required: true %>
+            </div>
+            <div class="col-xs-6">
+              <%= f.input :ends_at, required: true %>
+            </div>
           </div>
-          <div class="col-xs-6">
-            <%= f.input :ends_at, required: true %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <%= f.submit "Check availability", class: "btn btn-success btn-block" %>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.submit "Check availability", class: "btn btn-success btn-block" %>
+            </div>
           </div>
         </div>
       <% end %>
@@ -44,3 +46,53 @@
     <% end %>
   <% end %>
 </div>
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(function() {
+      var defaultDateTimePickerOptions = {
+      format: "YYYY-MM-DD",
+      // extraFormats: ["YYYY-MM-DDTHH:mm:ssZ"],
+      minDate: moment(),
+      useCurrent: false,
+      viewMode: "days",
+      };
+      var $searchStartsAt = $("#rental_search_starts_at");
+      var $searchEndsAt = $("#rental_search_ends_at");
+
+      $searchStartsAt.datetimepicker(defaultDateTimePickerOptions);
+      $searchEndsAt.datetimepicker(defaultDateTimePickerOptions);
+
+      $searchStartsAt.add($searchEndsAt).on("dp.show", function(event) {
+        var $pickerSwitch = $(".bootstrap-datetimepicker-widget .picker-switch");
+        $pickerSwitch.css({
+          "background": "#fff",
+          "cursor": "default",
+        });
+        $pickerSwitch.removeAttr("title");
+        $pickerSwitch.on("click", function(event) { event.stopPropagation(); });
+      });
+
+      $searchStartsAt.on("dp.change", function(event) {
+        if (event.date) {
+          var minDate = moment(event.date).add(1, "days");
+
+          $searchEndsAt.data("DateTimePicker").minDate(minDate);
+          if ($searchEndsAt.data("DateTimePicker").date() < minDate) {
+            $searchEndsAt.data("DateTimePicker").date(null);
+          }
+        } else {
+          $searchEndsAt.data("DateTimePicker").minDate(moment());
+        }
+      });
+
+      $searchEndsAt.on("dp.change", function(event) {
+        if (event.date) {
+          $searchStartsAt.data("DateTimePicker").maxDate(event.date);
+          if ($searchStartsAt.data("DateTimePicker").date() > event.date) {
+            $searchStartsAt.data("DateTimePicker").date(null);
+          }
+        }
+      });
+    });
+  </script>
+<% end %>
