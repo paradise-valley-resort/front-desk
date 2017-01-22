@@ -5,6 +5,8 @@ FactoryGirl.define do
   factory :booking do
     starts_at { 1.day.from_now.change(hour: 15) }
     ends_at { 3.days.from_now.change(hour: 11) }
+    guest_name "John Doe"
+    guest_email { generate(:email) }
     rental
   end
 

@@ -7,6 +7,9 @@ en:
   activerecord:
     attributes:
       booking:
+        guest_email: "Email"
+        guest_membership_id: "Membership #"
+        guest_name: "Name"
         starts_at: "Check In"
         ends_at: "Check Out"
       member:
