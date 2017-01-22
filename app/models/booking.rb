@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[^@]+@[^@]+\z/.freeze
-  enum status: { pending: 0, approved: 1, rejected: 2, paid: 3 }
+  enum status: { pending: 0, approved: 1, rejected: 2, paid: 3, cancelled: 4 }
 
   belongs_to :rental
 
