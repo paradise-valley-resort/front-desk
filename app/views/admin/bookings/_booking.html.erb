@@ -27,6 +27,24 @@
       <span>&nbsp;</span>
     </div>
     <div class="col-xs-1 table-list-cell actions">
+      <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle manage-booking"
+          data-toggle="dropdown"
+          type="button">
+          <%= fa_icon "cog" %>
+          <%= fa_icon "caret-down" %>
+        </button>
+        <ul class="dropdown-menu">
+          <% if booking.pending? %>
+            <li>
+              <%= button_to "Approve booking",
+                admin_booking_approvals_path(booking),
+                class: "btn-link"
+              %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </li>

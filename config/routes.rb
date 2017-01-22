@@ -17,7 +17,9 @@ Rails.application.routes.draw do
       get "/deactive", to: "deactives#index", as: "deactives"
     end
 
-    resources :bookings, only: [:index]
+    resources :bookings, only: [:index] do
+      resources :approvals, only: [:create], controller: "bookings/approvals"
+    end
 
     resources :members, only: [:index, :new, :create, :edit, :update] do
       resources :deactivations, only: [:create], controller: "members/deactivations"

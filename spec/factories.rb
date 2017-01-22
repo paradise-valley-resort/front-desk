@@ -10,6 +10,10 @@ FactoryGirl.define do
     guest_email { generate(:email) }
     request_id
     rental
+
+    trait :pending do
+      status 0
+    end
   end
 
   factory :member do
