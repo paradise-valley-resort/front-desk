@@ -1,0 +1,29 @@
+<h2>Bookings</h2>
+<div class="table-list-header">
+  <div class="row">
+    <div class="col-xs-2">
+      <h5>Request #</h5>
+    </div>
+    <div class="col-xs-3">
+      <h5>Guest</h5>
+    </div>
+    <div class="col-xs-2">
+      <h5>Check In</h5>
+    </div>
+    <div class="col-xs-2">
+      <h5>Check Out</h5>
+    </div>
+    <div class="col-xs-3">
+      <h5>&nbsp;</h5>
+    </div>
+  </div>
+</div>
+<ul class="bookings table-list">
+  <%= render partial: "admin/bookings/booking", collection: @bookings %>
+</ul>
+<div class="paginate-container">
+  <%= paginate @bookings %>
+  <div class="paginate-info">
+    <%= page_entries_info @bookings %>
+  </div>
+</div>

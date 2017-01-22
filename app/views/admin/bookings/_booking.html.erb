@@ -1,0 +1,32 @@
+<li class="table-list-item rental-list-item" id="booking_<%= booking.to_param %>">
+  <div class="row">
+    <div class="col-xs-2 table-list-cell">
+      <span><%= booking.request_id %></span>
+    </div>
+    <div class="col-xs-3 table-list-cell">
+      <%= link_to booking.guest_name,
+        "#",
+        data: {
+          content: html_escape_once(guest_contact_info_popover(booking)),
+          html: "true",
+          placement: "right",
+          toggle: "popover",
+          trigger: "focus"
+        },
+        role: "button",
+        title: "Guest Information"
+      %>
+    </div>
+    <div class="col-xs-2 table-list-cell">
+      <span><%= booking.starts_at.strftime("%-m/%-d/%Y") %></span>
+    </div>
+    <div class="col-xs-2 table-list-cell">
+      <span><%= booking.ends_at.strftime("%-m/%-d/%Y") %></span>
+    </div>
+    <div class="col-xs-2 table-list-cell">
+      <span>&nbsp;</span>
+    </div>
+    <div class="col-xs-1 table-list-cell actions">
+    </div>
+  </div>
+</li>

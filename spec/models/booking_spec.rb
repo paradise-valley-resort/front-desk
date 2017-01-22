@@ -40,4 +40,16 @@ describe Booking do
 
     it { should_not allow_values("fooexample.com", "foo@@example.com").for(:guest_email) }
   end
+
+  describe ".ordered" do
+    it "orders bookings newest to oldest" do
+      first_booking = create(:booking)
+      second_booking = create(:booking)
+      third_booking = create(:booking)
+
+      results = Booking.ordered
+
+      expect(results).to eq([third_booking, second_booking, first_booking])
+    end
+  end
 end

@@ -21,6 +21,10 @@ class Booking < ApplicationRecord
 
   delegate :name, to: :rental, prefix: true
 
+  def self.ordered
+    order(created_at: :desc)
+  end
+
   private
 
   def generate_request_id
