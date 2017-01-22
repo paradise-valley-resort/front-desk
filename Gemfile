@@ -4,6 +4,7 @@ ruby "2.3.1"
 
 gem "autoprefixer-rails"
 gem "bootstrap-sass", "~> 3.3.6"
+gem "bootstrap3-datetimepicker-rails", "~> 4.17"
 gem "delayed_job_active_record"
 gem "devise"
 gem "flutie"
