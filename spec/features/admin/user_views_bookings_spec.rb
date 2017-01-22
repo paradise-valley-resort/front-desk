@@ -86,4 +86,16 @@ feature "User views bookings" do
     expect(page).to have_content(rejected_booking.request_id)
     expect(page).not_to have_content(pending_booking.request_id)
   end
+
+  scenario "and chooses to filter the list of bookings by paid status" do
+    paid_booking = create(:booking, :paid)
+    pending_booking = create(:booking, :pending)
+
+    sign_in create(:user)
+    visit admin_bookings_path
+    click_on "Paid"
+
+    expect(page).to have_content(paid_booking.request_id)
+    expect(page).not_to have_content(pending_booking.request_id)
+  end
 end

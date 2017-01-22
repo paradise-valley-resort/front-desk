@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     namespace :bookings do
       get "/approved", to: "approveds#index", as: "approveds"
+      get "/paid", to: "paids#index", as: "paids"
       get "/pending", to: "pendings#index", as: "pendings"
       get "/rejected", to: "rejecteds#index", as: "rejecteds"
     end

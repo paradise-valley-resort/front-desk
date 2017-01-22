@@ -22,6 +22,10 @@ FactoryGirl.define do
     trait :rejected do
       status 2
     end
+
+    trait :paid do
+      status 3
+    end
   end
 
   factory :member do
