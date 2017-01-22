@@ -35,7 +35,13 @@
   <% if @search.errors.blank? %>
     <% if @search.results.present? %>
       <ul class="search-results">
-        <%= render partial: "rental_searches/result", collection: @search.results %>
+        <%= render partial: "rental_searches/result",
+          collection: @search.results,
+          locals: {
+            starts_at: @search.starts_at,
+            ends_at: @search.ends_at
+          }
+        %>
       </ul>
     <% elsif %>
       <div class="row">

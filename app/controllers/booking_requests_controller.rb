@@ -1,6 +1,7 @@
 class BookingRequestsController < ApplicationController
   def new
     @booking = build_booking
+    set_booking_starts_at_and_ends_at
   end
 
   def create
@@ -29,5 +30,18 @@ class BookingRequestsController < ApplicationController
 
   def find_rental
     Rental.find(params[:rental_id])
+  end
+
+  def set_booking_ends_at
+    @booking.ends_at = params[:ends_at] if params[:ends_at]
+  end
+
+  def set_booking_starts_at
+    @booking.starts_at = params[:starts_at] if params[:starts_at]
+  end
+
+  def set_booking_starts_at_and_ends_at
+    set_booking_starts_at
+    set_booking_ends_at
   end
 end

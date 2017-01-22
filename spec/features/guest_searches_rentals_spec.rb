@@ -41,7 +41,7 @@ feature "Guest searches rentals" do
     fill_in "Check In", with: 1.day.from_now
     fill_in "Check Out", with: 3.days.from_now
     click_on "Check availability"
-    page.find(:css, "a[href='/rentals/#{rental.to_param}']").click
+    page.find("#rental_#{rental.to_param} a").click
 
     expect(current_path).to eq(rental_path(rental))
   end
