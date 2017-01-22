@@ -26,6 +26,8 @@ module Admin::BookingsHelper
       booking_rejected_status_label(booking)
     when "paid"
       booking_paid_status_label(booking)
+    when "cancelled"
+      booking_cancelled_status_label(booking)
     end
   end
 
@@ -35,6 +37,7 @@ module Admin::BookingsHelper
       concat(bookings_status_filter_pending_button)
       concat(bookings_status_filter_approved_button)
       concat(bookings_status_filter_paid_button)
+      concat(bookings_status_filter_cancelled_button)
       concat(bookings_status_filter_rejected_button)
     end
   end
@@ -43,6 +46,12 @@ module Admin::BookingsHelper
 
   def booking_approved_status_label(booking)
     content_tag(:span, class: "label label-primary") do
+      booking.status.capitalize
+    end
+  end
+
+  def booking_cancelled_status_label(booking)
+    content_tag(:span, class: "label label-danger") do
       booking.status.capitalize
     end
   end
@@ -75,6 +84,12 @@ module Admin::BookingsHelper
     klass = "btn btn-default"
     klass = "#{klass} active" if controller_name == "approveds"
     link_to "Approved", admin_bookings_approveds_path, class: klass
+  end
+
+  def bookings_status_filter_cancelled_button
+    klass = "btn btn-default"
+    klass = "#{klass} active" if controller_name == "cancelleds"
+    link_to "Cancelled", admin_bookings_cancelleds_path, class: klass
   end
 
   def bookings_status_filter_paid_button

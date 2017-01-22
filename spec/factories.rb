@@ -26,6 +26,10 @@ FactoryGirl.define do
     trait :paid do
       status 3
     end
+
+    trait :cancelled do
+      status 4
+    end
   end
 
   factory :member do

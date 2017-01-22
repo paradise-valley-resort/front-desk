@@ -98,4 +98,16 @@ feature "User views bookings" do
     expect(page).to have_content(paid_booking.request_id)
     expect(page).not_to have_content(pending_booking.request_id)
   end
+
+  scenario "and chooses to filter the list of bookings by cancelled status" do
+    cancelled_booking = create(:booking, :cancelled)
+    pending_booking = create(:booking, :pending)
+
+    sign_in create(:user)
+    visit admin_bookings_path
+    click_on "Cancelled"
+
+    expect(page).to have_content(cancelled_booking.request_id)
+    expect(page).not_to have_content(pending_booking.request_id)
+  end
 end
