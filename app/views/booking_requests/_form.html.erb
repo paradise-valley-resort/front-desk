@@ -4,13 +4,13 @@
 ) do |f| %>
   <%= error_notification(f, resource_display_name: "booking request") %>
 
+  <%= f.input :starts_at, as: :hidden %>
+  <%= f.input :ends_at, as: :hidden %>
   <%= f.input :guest_name, required: true, autofocus: true %>
   <%= f.input :guest_email, required: true %>
   <%= f.input :guest_membership_id,
-    hint: "Provide your membership number to avoid any delays."
+    hint: "Provide your membership number to avoid delays"
   %>
-  <%= f.input :starts_at, as: :string, required: true %>
-  <%= f.input :ends_at, as: :string, required: true %>
   <div class="form-actions">
     <%= f.button :submit, class: "btn-success pull-right" %>
     <%= link_to "Cancel", :back, class: "btn btn-default pull-right" %>

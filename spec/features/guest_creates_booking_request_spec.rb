@@ -4,17 +4,21 @@ feature "Guest creates booking request" do
   scenario "with invalid attributes and sees error message" do
     rental = create(:rental)
 
-    visit new_rental_booking_request_path(rental)
-    fill_out_booking_request_form(starts_at: nil)
+    fill_out_rental_search_form
+    select_rental(rental.to_param)
+    click_on "Request to book"
+    fill_out_booking_request_form(guest_name: nil)
 
     expect(page).to have_content("There were problems creating the booking request")
-    expect(page).to have_content("Check In can't be blank")
+    expect(page).to have_content("Name can't be blank")
   end
 
   scenario "with valid attributes and sees success message" do
     rental = create(:rental)
 
-    visit new_rental_booking_request_path(rental)
+    fill_out_rental_search_form
+    select_rental(rental.to_param)
+    click_on "Request to book"
     fill_out_booking_request_form
 
     expect(page).to have_content("Booking request was successfully created")
@@ -24,8 +28,17 @@ feature "Guest creates booking request" do
     booking = build(:booking, {}.merge(booking_attributes))
     fill_in "Name", with: booking.guest_name
     fill_in "Email", with: booking.guest_email
-    fill_in "Check In", with: booking.starts_at.strftime("%Y-%m-%d") if booking.starts_at.present?
-    fill_in "Check Out", with: booking.ends_at.strftime("%Y-%m-%d") if booking.ends_at.present?
     click_on "Submit booking request"
+  end
+
+  def fill_out_rental_search_form
+    visit rentals_search_path
+    fill_in "Check In", with: 1.day.from_now
+    fill_in "Check Out", with: 3.days.from_now
+    click_on "Check availability"
+  end
+
+  def select_rental(rental_id)
+    page.find("#rental_#{rental_id} a").click
   end
 end

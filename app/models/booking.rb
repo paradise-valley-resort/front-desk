@@ -18,6 +18,8 @@ class Booking < ApplicationRecord
   validates :rental, presence: true
   validates :starts_at, presence: true
 
+  delegate :name, to: :rental, prefix: true
+
   private
 
   def set_ends_at_time

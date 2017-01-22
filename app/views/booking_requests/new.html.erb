@@ -1,4 +1,18 @@
-<div class="form-container narrow centered">
-  <h2>Create a new booking request</h2>
-  <%= render "form" %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="form-container narrow centered">
+        <h2>Create a new booking request</h2>
+        <%= render "form" %>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="rental-details">
+        <h4 class="text-center">Booking details</h4>
+        <h5><%= @booking.rental_name %></h5>
+        <p>Check In: <%= @booking.starts_at.strftime("%-m/%-d/%Y") %></p>
+        <p>Check In: <%= @booking.ends_at.strftime("%-m/%-d/%Y") %></p>
+      </div>
+    </div>
+  </div>
 </div>
