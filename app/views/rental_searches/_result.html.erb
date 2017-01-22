@@ -1,6 +1,5 @@
 <li class="result" id="rental_<%= result.to_param %>">
-  <%# TODO: Update link %>
-  <a class="result-wrapper" href="#">
+  <%= link_to rental_path(result), class: "result-wrapper" do %>
     <div class="row">
       <div class="col-xs-3">
         <%# TODO: Update image %>
@@ -13,5 +12,5 @@
         </p>
       </div>
     </div>
-  </a>
+  <% end %>
 </li>

@@ -33,4 +33,16 @@ feature "Guest searches rentals" do
       "Sorry, there are no rentals available during those dates"
     )
   end
+
+  scenario "and selects a rental" do
+    rental = create(:rental)
+
+    visit rentals_search_path
+    fill_in "Check In", with: 1.day.from_now
+    fill_in "Check Out", with: 3.days.from_now
+    click_on "Check availability"
+    page.find(:css, "a[href='/rentals/#{rental.to_param}']").click
+
+    expect(current_path).to eq(rental_path(rental))
+  end
 end
