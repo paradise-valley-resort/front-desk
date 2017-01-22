@@ -42,6 +42,15 @@
                 class: "btn-link"
               %>
             </li>
+            <li>
+              <%= button_to "Reject booking",
+                admin_booking_rejections_path(booking),
+                class: "btn-link btn-danger",
+                data: {
+                  confirm: "Are you sure you want to reject this booking?" 
+                }
+              %>
+            </li>
           <% end %>
         </ul>
       </div>
