@@ -12,8 +12,14 @@ class Rental < ApplicationRecord
 
     left_outer_joins(:bookings).
       active.
+      where(bookings: { status: [1, 3] }).
       where.not(bookings: { starts_at: time_range }).
       where.not(bookings: { ends_at: time_range }).
+      or(
+        left_outer_joins(:bookings).
+          active.
+          where.not(bookings: { status: [1, 3] })
+      ).
       or(
         left_outer_joins(:bookings).
           active.

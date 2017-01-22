@@ -67,6 +67,7 @@ describe Rental do
         to = 10.days.from_now.change(hour: 11)
         booking = create(
           :booking,
+          :approved,
           starts_at: 3.days.from_now.change(hour: 15),
           ends_at: 5.days.from_now.change(hour: 11)
         )
@@ -81,6 +82,7 @@ describe Rental do
         to = 10.days.from_now.change(hour: 11)
         booking = create(
           :booking,
+          :approved,
           starts_at: 4.days.from_now.change(hour: 15),
           ends_at: 6.days.from_now.change(hour: 11)
         )
@@ -95,6 +97,7 @@ describe Rental do
         to = 5.days.from_now.change(hour: 11)
         booking = create(
           :booking,
+          :approved,
           starts_at: 4.days.from_now.change(hour: 15),
           ends_at: 6.days.from_now.change(hour: 11)
         )
@@ -109,6 +112,7 @@ describe Rental do
         to = 5.days.from_now.change(hour: 11)
         booking = create(
           :booking,
+          :approved,
           starts_at: from,
           ends_at: 3.days.from_now.change(hour: 11)
         )
@@ -123,6 +127,7 @@ describe Rental do
         to = 7.days.from_now.change(hour: 11)
         booking = create(
           :booking,
+          :approved,
           starts_at: 1.day.from_now.change(hour: 15),
           ends_at: to
         )
@@ -137,6 +142,7 @@ describe Rental do
         to = 7.days.from_now.change(hour: 11)
         booking = create(
           :booking,
+          :approved,
           starts_at: from,
           ends_at: to
         )
