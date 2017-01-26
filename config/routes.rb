@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, path: :admin
 
+  authenticated :user do
+    root "admin/bookings#index", as: :authenticated_admin_root
+  end
+
   namespace :admin do
     namespace :bookings do
       get "/approved", to: "approveds#index", as: "approveds"
@@ -51,7 +55,7 @@ Rails.application.routes.draw do
       resources :reactivations, only: [:create], controller: "users/reactivations"
     end
 
-    root "dashboard#show"
+    root "devise/sessions#new"
   end
 
   namespace :rentals do
@@ -63,4 +67,6 @@ Rails.application.routes.draw do
   resources :rentals, only: [] do
     resources :booking_requests, only: [:new, :create]
   end
+
+  root "rentals/searches#show"
 end
