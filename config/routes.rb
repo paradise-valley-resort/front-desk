@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
   resources :booking_requests, only: [:show]
 
-  resources :rentals, only: [:show] do
+  resources :rentals, only: [] do
     resources :booking_requests, only: [:new, :create]
   end
 end

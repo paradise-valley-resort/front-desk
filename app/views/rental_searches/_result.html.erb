@@ -1,16 +1,108 @@
 <li class="result" id="rental_<%= result.to_param %>">
-  <%= link_to rental_path(result, starts_at: starts_at, ends_at: ends_at), class: "result-wrapper" do %>
-    <div class="row">
-      <div class="col-xs-3">
-        <%# TODO: Update image %>
+  <div class="row">
+    <div class="col-xs-3">
+      <% if File.exist?(Rails.root.join("app/assets/images", "rental_#{result.name}.jpg")) %>
+        <%= image_tag("rental_#{result.name}",
+          size: "250x150",
+          alt: "#{result.name}"
+        ) %>
+      <% else %>
         <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Image+Coming+Soon&w=250&h=150" alt="Coming Soon" />
-      </div>
-      <div class="col-xs-9">
-        <h3><%= result.name %></h3>
-        <p>
-          <%= result.description %>
-        </p>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <h3><%= result.name %></h3>
+      <p>
+        <%= result.description %>
+      </p>
+      <div class="">
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#about-the-space_<%= result.to_param %>" data-toggle="tab" role="tab">
+              About the space
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#amenities_<%= result.to_param %>" data-toggle="tab" role="tab">
+              Amenities
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="about-the-space_<%= result.to_param %>" role="tabpanel">
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="space-detail">
+                  Accommodates: <strong><%= result.accommodates %></strong>
+                </div>
+                <div class="space-detail">
+                  Bathrooms: <strong><%= result.bathrooms %></strong>
+                </div>
+                <div class="space-detail">
+                  Bedrooms: <strong><%= result.bedrooms %></strong>
+                </div>
+                <div class="space-detail">
+                  Beds: <strong><%= result.beds %></strong>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="space-detail">
+                  Check In: <strong>3 PM</strong>
+                </div>
+                <div class="space-detail">
+                  Check Out: <strong>11 AM</strong>
+                </div>
+                <div class="space-detail">
+                  Cancellation Policy: <strong>72 hours</strong>
+                </div>
+                <div class="space-detail">
+                  Rules: <strong>No smoking / No pets</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="amenities_<%= result.to_param %>" role="tabpanel">
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="amenity-<%= result.air_conditioning %>">
+                  <%= fa_icon "thermometer-empty" %> Air conditioning
+                </div>
+                <div class="amenity-<%= result.heating %>">
+                  <%= fa_icon "thermometer-full" %> Heating
+                </div>
+                <div class="amenity-<%= result.internet %>">
+                  <%= fa_icon "wifi" %> Internet
+                </div>
+                <div class="amenity-<%= result.refrigerator %>">
+                  <%= fa_icon "snowflake-o" %> Refrigerator
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="amenity-<%= result.shower %>">
+                  <%= fa_icon "shower" %> Shower
+                </div>
+                <div class="amenity-<%= result.stove %>">
+                  <%= fa_icon "cutlery" %> Stove
+                </div>
+                <div class="amenity-<%= result.shower %>">
+                  <%= fa_icon "male" %><%= fa_icon "female" %> Toilet
+                </div>
+                <div class="amenity-<%= result.tv %>">
+                  <%= fa_icon "tv" %> Television
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  <% end %>
+    <div class="col-xs-3">
+      <div class="actions">
+        <%= link_to "Request to book",
+          new_rental_booking_request_path(result, starts_at: @search.starts_at, ends_at: @search.ends_at),
+          class: "btn btn-success btn-block"
+        %>
+      </div>
+    </div>
+  </div>
 </li>

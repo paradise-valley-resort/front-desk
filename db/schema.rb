@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122144450) do
+ActiveRecord::Schema.define(version: 20170122203450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,11 +62,25 @@ ActiveRecord::Schema.define(version: 20170122144450) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.string   "name",           limit: 255, null: false
+    t.string   "name",             limit: 255,                 null: false
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.datetime "deactivated_at"
+    t.integer  "accommodates",                 default: 0,     null: false
+    t.boolean  "air_conditioning",             default: false
+    t.integer  "bathrooms",                    default: 0,     null: false
+    t.integer  "bedrooms",                     default: 0,     null: false
+    t.integer  "beds",                         default: 0,     null: false
+    t.boolean  "heating",                      default: false
+    t.boolean  "internet",                     default: false
+    t.boolean  "pets",                         default: false
+    t.boolean  "refrigerator",                 default: false
+    t.boolean  "shower",                       default: false
+    t.boolean  "smoking",                      default: false
+    t.boolean  "stove",                        default: false
+    t.boolean  "toilet",                       default: false
+    t.boolean  "tv",                           default: false
   end
 
   create_table "users", force: :cascade do |t|

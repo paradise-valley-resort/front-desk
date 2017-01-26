@@ -51,6 +51,7 @@
     border: 1px solid $border-gray-light;
     border-radius: 4px;
     list-style: none;
+    margin-bottom: 20px;
     padding: 15px;
 
     .result-wrapper {
@@ -58,8 +59,23 @@
       text-decoration: none;
     }
 
-    &:hover {
-      background-color: $bg-gray-light;
+    .tab-pane {
+      padding-top: 10px;
+    }
+
+    .space-detail,
+    .amenity-false,
+    .amenity-true {
+      padding: 5px 10px 5px 15px;
+    }
+
+    .amenity-false {
+      color: #777;
+      text-decoration: line-through;
+    }
+
+    .actions {
+      margin-top: 20px;
     }
   }
 }

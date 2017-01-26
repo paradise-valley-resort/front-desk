@@ -8,23 +8,27 @@ class Rental < ApplicationRecord
   end
 
   def self.available_between(from, to)
-    time_range = from..to
+    sql_conditions = <<-SQL.squish
+      rentals.deactivated_at IS NULL
+      AND (
+        bookings.id IS NULL
+        OR bookings.status IN (0, 2, 4)
+        OR (
+          rentals.id NOT IN (
+            SELECT rental_id
+            FROM bookings
+            WHERE (
+              status IN (1, 3)
+              AND starts_at BETWEEN :from AND :to
+              OR ends_at BETWEEN :from AND :to
+            )
+          )
+        )
+      )
+    SQL
 
     left_outer_joins(:bookings).
-      active.
-      where(bookings: { status: [1, 3] }).
-      where.not(bookings: { starts_at: time_range }).
-      where.not(bookings: { ends_at: time_range }).
-      or(
-        left_outer_joins(:bookings).
-          active.
-          where.not(bookings: { status: [1, 3] })
-      ).
-      or(
-        left_outer_joins(:bookings).
-          active.
-          where(bookings: { id: nil })
-      ).
+      where(sql_conditions, from: from, to: to).
       distinct
   end
 

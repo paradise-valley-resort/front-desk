@@ -42,6 +42,21 @@ class Admin::RentalsController < Admin::ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:name, :description)
+    params.require(:rental).permit(
+      :name,
+      :description,
+      :accommodates,
+      :bathrooms,
+      :bedrooms,
+      :beds,
+      :air_conditioning,
+      :heating,
+      :internet,
+      :refrigerator,
+      :shower,
+      :stove,
+      :toilet,
+      :tv
+    )
   end
 end

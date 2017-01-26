@@ -6,7 +6,6 @@ feature "Guest creates booking request" do
 
     fill_out_rental_search_form
     select_rental(rental.to_param)
-    click_on "Request to book"
     fill_out_booking_request_form(guest_name: nil)
 
     expect(page).to have_content("There were problems creating the booking request")
@@ -18,7 +17,6 @@ feature "Guest creates booking request" do
 
     fill_out_rental_search_form
     select_rental(rental.to_param)
-    click_on "Request to book"
     fill_out_booking_request_form
 
     expect(page).to have_content("Booking request was successfully created")
@@ -29,7 +27,6 @@ feature "Guest creates booking request" do
 
     fill_out_rental_search_form
     select_rental(rental.to_param)
-    click_on "Request to book"
     rental.touch(:deactivated_at)
     fill_out_booking_request_form
 
@@ -52,6 +49,8 @@ feature "Guest creates booking request" do
   end
 
   def select_rental(rental_id)
-    page.find("#rental_#{rental_id} a").click
+    within "#rental_#{rental_id}" do
+      click_on "Request to book"
+    end
   end
 end

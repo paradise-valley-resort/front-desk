@@ -41,8 +41,10 @@ feature "Guest searches rentals" do
     fill_in "Check In", with: 1.day.from_now
     fill_in "Check Out", with: 3.days.from_now
     click_on "Check availability"
-    page.find("#rental_#{rental.to_param} a").click
+    within "#rental_#{rental.to_param}" do
+      click_on "Request to book"
+    end
 
-    expect(current_path).to eq(rental_path(rental))
+    expect(current_path).to eq(new_rental_booking_request_path(rental))
   end
 end

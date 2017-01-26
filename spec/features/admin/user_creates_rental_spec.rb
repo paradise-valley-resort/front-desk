@@ -27,6 +27,10 @@ feature "User creates rental" do
   def fill_out_rental_form(rental_attributes = {})
     rental = build(:rental, {}.merge(rental_attributes))
     fill_in "Name", with: rental.name
+    select rental.accommodates, from: "Accommodates"
+    select rental.bathrooms, from: "Bathrooms"
+    select rental.bedrooms, from: "Bedrooms"
+    select rental.beds, from: "Beds"
     click_on "Create rental"
   end
 end

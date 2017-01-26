@@ -52,6 +52,10 @@ FactoryGirl.define do
 
   factory :rental do
     name "Test rental"
+    accommodates 1
+    bathrooms 1
+    bedrooms 1
+    beds 1
 
     trait :active do
       deactivated_at nil
