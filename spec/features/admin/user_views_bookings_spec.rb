@@ -16,7 +16,7 @@ feature "User views bookings" do
 
   scenario "by navigating from site header" do
     sign_in create(:user)
-    visit admin_root_path
+    visit authenticated_admin_root_path
     click_on "Bookings"
 
     expect(current_path).to eq(admin_bookings_path)

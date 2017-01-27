@@ -45,11 +45,12 @@ class Rental < ApplicationRecord
   end
 
   def available_between?(from, to)
-    if self.class.available_between(from, to).include?(self)
-      true
-    else
-      false
-    end
+    overlapping_bookings = bookings.where(
+      status: [1, 3],
+      starts_at: from..to,
+      ends_at: from..to
+    )
+    active? && overlapping_bookings.size < 1
   end
 
   def deactive?

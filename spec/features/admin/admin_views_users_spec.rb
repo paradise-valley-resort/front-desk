@@ -11,7 +11,7 @@ feature "Admin views users" do
     sign_in create(:user)
     visit admin_users_path
 
-    expect(current_path).to eq(admin_root_path)
+    expect(current_path).to eq(authenticated_admin_root_path)
   end
 
   scenario "successfully" do
@@ -27,7 +27,7 @@ feature "Admin views users" do
     user = create(:user)
 
     sign_in create(:user, :admin)
-    visit admin_root_path
+    visit authenticated_admin_root_path
     click_on "Users"
 
     expect(current_path).to eq(admin_users_path)

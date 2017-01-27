@@ -14,6 +14,6 @@ feature "User signs in" do
     user = build(:user, {}.merge(user_attributes))
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
-    click_on "Log in"
+    click_on "Sign in"
   end
 end

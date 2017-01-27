@@ -11,7 +11,7 @@ class Admin::ApplicationController < ApplicationController
 
   def user_not_authorized
     redirect_back(
-      fallback_location: admin_root_path,
+      fallback_location: authenticated_admin_root_path,
       alert: "You are not authorized to perform this action."
     )
   end

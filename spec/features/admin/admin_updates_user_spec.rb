@@ -15,7 +15,7 @@ feature "Admin updates user" do
     sign_in user
     visit edit_admin_user_path(user)
 
-    expect(current_path).to eq(admin_root_path)
+    expect(current_path).to eq(authenticated_admin_root_path)
   end
 
   scenario "with an email address that has already been taken" do
