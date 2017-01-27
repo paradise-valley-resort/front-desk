@@ -12,7 +12,6 @@ class Rental < ApplicationRecord
       rentals.deactivated_at IS NULL
       AND (
         bookings.id IS NULL
-        OR bookings.status IN (0, 2, 4)
         OR (
           rentals.id NOT IN (
             SELECT rental_id
