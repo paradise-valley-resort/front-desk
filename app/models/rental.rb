@@ -18,8 +18,10 @@ class Rental < ApplicationRecord
             FROM bookings
             WHERE (
               status IN (1, 3)
-              AND starts_at BETWEEN :from AND :to
-              OR ends_at BETWEEN :from AND :to
+              AND (
+                starts_at BETWEEN :from AND :to
+                OR ends_at BETWEEN :from AND :to
+              )
             )
           )
         )
