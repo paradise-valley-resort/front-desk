@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-4 table-list-cell">
       <%= link_to member.full_name,
-        "#",
+        "javascript:;",
         data: {
           content: html_escape_once(member_contact_info_popover(member)),
           html: "true",
@@ -11,6 +11,7 @@
           trigger: "focus"
         },
         role: "button",
+        tabindex: 0,
         title: "Contact Information"
       %>
     </div>

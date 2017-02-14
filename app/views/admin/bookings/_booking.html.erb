@@ -5,7 +5,7 @@
     </div>
     <div class="col-xs-3 table-list-cell">
       <%= link_to booking.guest_name,
-        "#",
+        "javascript:;",
         data: {
           content: html_escape_once(guest_contact_info_popover(booking)),
           html: "true",
@@ -14,6 +14,7 @@
           trigger: "focus"
         },
         role: "button",
+        tabindex: 0,
         title: "Guest Information"
       %>
     </div>
