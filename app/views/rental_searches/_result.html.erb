@@ -1,8 +1,8 @@
 <li class="result" id="rental_<%= result.to_param %>">
   <div class="row">
     <div class="col-xs-3">
-      <% if File.exist?(Rails.root.join("app/assets/images", "rental_#{result.name}.jpg")) %>
-        <%= image_tag("rental_#{result.name}",
+      <% if File.exist?(Rails.root.join("app/assets/images", "#{result.name}.jpg")) %>
+        <%= image_tag("#{result.name}",
           size: "250x150",
           alt: "#{result.name}"
         ) %>
