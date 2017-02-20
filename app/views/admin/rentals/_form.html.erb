@@ -6,18 +6,18 @@
     <%= f.input :description, input_html: { rows: 5 } %>
     <div class="row">
       <div class="col-xs-6">
-        <%= f.input :accommodates, collection: 1..10, required: true %>
+        <%= f.input :accommodates, collection: 0..10, required: true %>
       </div>
       <div class="col-xs-6">
-        <%= f.input :bathrooms, collection: 1..5, required: true %>
+        <%= f.input :bathrooms, collection: 0..5, required: true %>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <%= f.input :bedrooms, collection: 1..5, required: true %>
+        <%= f.input :bedrooms, collection: 0..5, required: true %>
       </div>
       <div class="col-xs-6">
-        <%= f.input :beds, collection: 1..5, required: true %>
+        <%= f.input :beds, collection: 0..5, required: true %>
       </div>
     </div>
     <div class="row">
