@@ -1,6 +1,11 @@
 module Admin::BookingsHelper
   def guest_contact_info_popover(booking)
     content_tag(:span) do
+      concat("#{content_tag(:strong, "Request #")}")
+      concat("#{tag(:br)}")
+      concat("#{booking.request_id}")
+      concat("#{tag(:br)}")
+      concat("#{tag(:br)}")
       concat("#{content_tag(:strong, "Membership #")}")
       concat("#{tag(:br)}")
       if booking.guest_membership_id.present?
