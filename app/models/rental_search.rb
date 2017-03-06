@@ -36,7 +36,7 @@ class RentalSearch
   private
 
   def ends_at_cannot_be_in_the_past
-    if ends_at.present? && ends_at < Time.zone.now
+    if ends_at.present? && ends_at < Time.zone.now.beginning_of_day
       errors.add(:ends_at, "can't be in the past")
     end
   end
@@ -56,7 +56,7 @@ class RentalSearch
   end
 
   def starts_at_cannot_be_in_the_past
-    if starts_at.present? && starts_at < Time.zone.now
+    if starts_at.present? && starts_at < Time.zone.now.beginning_of_day
       errors.add(:starts_at, "can't be in the past")
     end
   end

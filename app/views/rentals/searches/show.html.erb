@@ -58,7 +58,7 @@
       var defaultDateTimePickerOptions = {
       format: "YYYY-MM-DD",
       // extraFormats: ["YYYY-MM-DDTHH:mm:ssZ"],
-      minDate: moment(),
+      minDate: moment().startOf("day"),
       useCurrent: false,
       viewMode: "days",
       };
