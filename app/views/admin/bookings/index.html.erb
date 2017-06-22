@@ -18,10 +18,10 @@
               <%= link_to "Guest: Z - A", params.permit(:sort).merge(sort: "guest_name_desc") %>
             </li>
             <li>
-              <%= link_to "Date: Newest to Oldest", params.permit(:sort).merge(sort: "date_asc") %>
+              <%= link_to "Date: Oldest to Newest", params.permit(:sort).merge(sort: "date_asc") %>
             </li>
             <li>
-              <%= link_to "Date: Oldest to Newest", params.permit(:sort).merge(sort: "date_desc") %>
+              <%= link_to "Date: Newest to Oldest", params.permit(:sort).merge(sort: "date_desc") %>
             </li>
           </ul>
         </div>
