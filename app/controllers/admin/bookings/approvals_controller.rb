@@ -8,6 +8,7 @@ class Admin::Bookings::ApprovalsController < Admin::ApplicationController
     end
 
     @booking.approved!
+    BookingMailer.approval_notification(@booking).deliver_now
     redirect_back(
       fallback_location: admin_bookings_path,
       flash: { success: "Booking was successfully approved." }

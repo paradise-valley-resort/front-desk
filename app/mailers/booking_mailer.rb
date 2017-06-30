@@ -16,4 +16,13 @@ class BookingMailer < ApplicationMailer
       subject: "New Booking Request Notification - #{@booking.request_id}"
     )
   end
+
+  def approval_notification(booking)
+    @booking = booking
+
+    mail(
+      to: @booking.guest_email,
+      subject: "Booking Request Approved - #{@booking.request_id}"
+    )
+  end
 end
