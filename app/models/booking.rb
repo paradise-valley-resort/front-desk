@@ -65,11 +65,11 @@ class Booking < ApplicationRecord
   end
 
   def calendar_end_date
-    (ends_at + 1.day).rfc822
+    (ends_at + 1.day).strftime("%Y-%m-%d %H:%M:%S")
   end
 
   def calendar_start_date
-    starts_at.rfc822
+    starts_at.strftime("%Y-%m-%d %H:%M:%S")
   end
 
   def calendar_title
