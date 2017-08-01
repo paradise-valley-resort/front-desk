@@ -21,6 +21,7 @@ class Rental < ApplicationRecord
               AND (
                 starts_at BETWEEN :from AND :to
                 OR ends_at BETWEEN :from AND :to
+                OR starts_at < :from AND ends_at > :to
               )
             )
           )
