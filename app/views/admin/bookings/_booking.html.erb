@@ -19,9 +19,12 @@
       %>
     </div>
     <div class="col-xs-2 table-list-cell">
+      <span><%= booking.created_at.strftime("%-m/%-d/%Y") %></span>
+    </div>
+    <div class="col-xs-1 table-list-cell">
       <span><%= booking.starts_at.strftime("%-m/%-d/%Y") %></span>
     </div>
-    <div class="col-xs-2 table-list-cell">
+    <div class="col-xs-1 table-list-cell">
       <span><%= booking.ends_at.strftime("%-m/%-d/%Y") %></span>
     </div>
     <div class="col-xs-2 table-list-cell">

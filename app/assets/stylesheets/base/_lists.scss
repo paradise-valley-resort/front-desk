@@ -6,6 +6,7 @@
   .row {
     margin-left: 0;
     margin-right: 0;
+    text-align: center;
   }
 }
 
@@ -15,6 +16,7 @@
   background-color: $bg-gray;
   border: 1px solid $border-gray;
   border-radius: 3px 3px 0 0;
+  text-align: center;
 }
 
 .table-list-item {
