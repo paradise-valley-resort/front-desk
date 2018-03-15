@@ -1,16 +1,18 @@
 class Admin::Bookings::ApprovedsController < Admin::ApplicationController
   def index
+    @bookings = Booking.includes(:rental).approved
     if params[:sort] == "guest_name_asc"
-      @bookings = Booking.approved.order(guest_name: :asc).page(params[:page])
+      @bookings = @bookings.order(guest_name: :asc)
     elsif params[:sort] == "guest_name_desc"
-      @bookings = Booking.approved.order(guest_name: :desc).page(params[:page])
+      @bookings = @bookings.order(guest_name: :desc)
     elsif params[:sort] == "date_asc"
-      @bookings = Booking.approved.order(starts_at: :asc, ends_at: :asc).page(params[:page])
+      @bookings = @bookings.order(starts_at: :asc, ends_at: :asc)
     elsif params[:sort] == "date_desc"
-      @bookings = Booking.approved.order(starts_at: :desc, ends_at: :desc).page(params[:page])
+      @bookings = @bookings.order(starts_at: :desc, ends_at: :desc)
     else
-      @bookings = Booking.approved.ordered.page(params[:page])
+      @bookings = @bookings.ordered
     end
+    @bookings = @bookings.page(params[:page])
     render "admin/bookings/index"
   end
 end
