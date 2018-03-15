@@ -32,7 +32,7 @@
     </div>
     <div class="col-xs-1 table-list-cell actions">
       <div class="btn-group">
-        <button class="btn btn-default dropdown-toggle manage-booking"
+        <button class="btn btn-default dropdown-toggle manage-booking <%= %w(cancelled rejected).include?(booking.status) ? "disabled" : "" %>"
           data-toggle="dropdown"
           type="button">
           <%= fa_icon "cog" %>
