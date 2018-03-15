@@ -17,7 +17,7 @@ class Rental < ApplicationRecord
             SELECT rental_id
             FROM bookings
             WHERE (
-              status IN (1, 3)
+              status IN (1, 3, 5)
               AND (
                 starts_at BETWEEN :from AND :to
                 OR ends_at BETWEEN :from AND :to

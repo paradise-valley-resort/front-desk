@@ -29,8 +29,10 @@ module Admin::BookingsHelper
       booking_approved_status_label(booking)
     when "rejected"
       booking_rejected_status_label(booking)
-    when "paid"
+    when "paid_in_full"
       booking_paid_status_label(booking)
+    when "deposit_paid"
+      booking_partially_paid_status_label(booking)
     when "cancelled"
       booking_cancelled_status_label(booking)
     end
@@ -51,31 +53,37 @@ module Admin::BookingsHelper
 
   def booking_approved_status_label(booking)
     content_tag(:span, class: "label label-primary") do
-      booking.status.capitalize
+      booking.status.humanize.titleize
     end
   end
 
   def booking_cancelled_status_label(booking)
     content_tag(:span, class: "label label-danger") do
-      booking.status.capitalize
+      booking.status.humanize.titleize
     end
   end
 
   def booking_paid_status_label(booking)
     content_tag(:span, class: "label label-success") do
-      booking.status.capitalize
+      booking.status.humanize.titleize
+    end
+  end
+
+  def booking_partially_paid_status_label(booking)
+    content_tag(:span, class: "label label-success") do
+      booking.status.humanize.titleize
     end
   end
 
   def booking_pending_status_label(booking)
     content_tag(:span, class: "label label-default") do
-      booking.status.capitalize
+      booking.status.humanize.titleize
     end
   end
 
   def booking_rejected_status_label(booking)
     content_tag(:span, class: "label label-danger") do
-      booking.status.capitalize
+      booking.status.humanize.titleize
     end
   end
 

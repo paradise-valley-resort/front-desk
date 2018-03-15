@@ -57,13 +57,37 @@
             </li>
           <% elsif booking.approved? %>
             <li>
-              <%= button_to "Mark booking as paid",
+              <%= button_to "Mark as Deposit Paid",
                 admin_booking_payments_path(booking),
+                params: { payment_type: :deposit_paid },
+                class: "btn-link"
+              %>
+            </li>
+            <li>
+              <%= button_to "Mark as Paid in Full",
+                admin_booking_payments_path(booking),
+                params: { payment_type: :paid_in_full },
+                class: "btn-link"
+              %>
+            </li>
+          <% elsif booking.deposit_paid? %>
+            <li>
+              <%= button_to "Mark as Paid in Full",
+                admin_booking_payments_path(booking),
+                params: { payment_type: :paid_in_full },
+                class: "btn-link"
+              %>
+            </li>
+          <% elsif booking.paid_in_full? %>
+            <li>
+              <%= button_to "Mark as Deposit Paid",
+                admin_booking_payments_path(booking),
+                params: { payment_type: :deposit_paid },
                 class: "btn-link"
               %>
             </li>
           <% end %>
-          <% if booking.approved? || booking.paid? %>
+          <% if booking.approved? || booking.deposit_paid? || booking.paid_in_full? %>
             <li>
               <%= button_to "Cancel booking",
                 admin_booking_cancellations_path(booking),

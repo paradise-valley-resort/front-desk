@@ -1,6 +1,6 @@
 class Admin::Bookings::PaidsController < Admin::ApplicationController
   def index
-    @bookings = Booking.includes(:rental).paid
+    @bookings = Booking.includes(:rental).deposit_paid_and_paid_in_full
     if params[:sort] == "guest_name_asc"
       @bookings = @bookings.order(guest_name: :asc)
     elsif params[:sort] == "guest_name_desc"

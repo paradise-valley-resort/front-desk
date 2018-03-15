@@ -3,11 +3,12 @@ class Booking < ApplicationRecord
     pending: "#777",
     approved: "#337ab7",
     rejected: "#d9534f",
-    paid: "#5cb85c",
+    paid_in_full: "#5cb85c",
+    deposit_paid: "#5cb85c",
     cancelled: "#d9534f"
   }
   VALID_EMAIL_REGEX = /\A[^@]+@[^@]+\z/.freeze
-  enum status: { pending: 0, approved: 1, rejected: 2, paid: 3, cancelled: 4 }
+  enum status: { pending: 0, approved: 1, rejected: 2, paid_in_full: 3, cancelled: 4, deposit_paid: 5 }
 
   belongs_to :rental
 
@@ -47,6 +48,10 @@ class Booking < ApplicationRecord
     order(created_at: :desc)
   end
 
+  def self.deposit_paid_and_paid_in_full
+    where(status: [3, 5])
+  end
+
   def as_json(options = {})
     {
       id: id,
@@ -73,7 +78,7 @@ class Booking < ApplicationRecord
   end
 
   def calendar_title
-    "#{rental_name} - #{guest_name} (#{status.capitalize})"
+    "#{rental_name} - #{guest_name} (#{status.humanize.titleize})"
   end
 
   def generate_request_id
