@@ -12,7 +12,7 @@ class BookingMailer < ApplicationMailer
     @booking = booking
 
     mail(
-      to: "pv_resort@yahoo.com",
+      to: ["pv_resort@yahoo.com", "pvrwelcomecenter@outlook.com"],
       subject: "New Booking Request Notification - #{@booking.request_id}"
     )
   end
